@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer components {
+  .hero-image-height {
+    height: calc(100vh - 70px);
+  }
+
   .btn-primary {
     @apply px-4 py-1.5 bg-limeade hover:bg-verdun-green rounded-full text-white transition;
   }

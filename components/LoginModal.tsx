@@ -2,17 +2,14 @@ import { useState } from 'react'
 import { EyeIcon, EyeOffIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 
-import AuthLayout from '@/components/AuthLayout'
-
-export default function Login() {
+export const LoginModal = () => {
   const [showPassword, setShowPassword] = useState(false)
 
   return (
-    <div className="grid grid-cols-3 gap-6 max-w-7xl mx-auto py-20">
-      <div className="col-span-2"></div>
-      <div className="col-span-1 shadow">
-        <form className="bg-white px-8 py-10 rounded-md">
-          <h2 className="text-3xl text-center mb-10">Welcome Back!</h2>
+    <div>
+      <form className="bg-white">
+        <h2 className="bg-limeade text-white px-6 py-4 text-lg">Log in</h2>
+        <div className="p-6">
           <div className="mb-4">
             <label
               htmlFor="email"
@@ -57,11 +54,9 @@ export default function Login() {
               </button>
             </div>
           </div>
-
-          <div className="mb-6 mt-10">
-            <button className="btn-primary w-full">Log in</button>
-          </div>
-          <p className="text-sm text-center">
+        </div>
+        <div className="bg-gray-100 px-6 py-3 flex space-x-4 items-center justify-end">
+          <p className="text-sm">
             Do not have an account?{' '}
             <Link href="/signup">
               <a className="text-limeade hover:text-verdun-green font-semibold">
@@ -69,12 +64,11 @@ export default function Login() {
               </a>
             </Link>
           </p>
-        </form>
-      </div>
+          <button className="px-4 py-1.5 bg-limeade hover:bg-verdun-green text-white transition shadow">
+            Log in
+          </button>
+        </div>
+      </form>
     </div>
   )
-}
-
-Login.getLayout = function getLayout(page: JSX.Element) {
-  return <AuthLayout>{page}</AuthLayout>
 }

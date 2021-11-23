@@ -7,8 +7,18 @@ import { Menu, Transition } from '@headlessui/react'
 
 export const Navbar = () => {
   return (
-    <header className="py-4 px-2 shadow-md">
-      <div className="max-w-7xl mx-auto flex justify-between items-center">
+    <header className="shadow-md">
+      <div className="bg-[#FFF1BF] text-gray-800 py-4 text-center">
+        <p>
+          Book Healtcare & Wellness Centre Instantly near you.{' '}
+          <Link href="/book">
+            <a className="text-limeade font-bold hover:text-verdun-green">
+              Book Now
+            </a>
+          </Link>
+        </p>
+      </div>
+      <div className="max-w-7xl mx-auto py-4  px-2  flex justify-between items-center">
         <Link href="/">
           <a>
             <img
@@ -83,22 +93,28 @@ export const Navbar = () => {
                 </Menu.Item>
                 <Menu.Item as="li" className="block whitespace-nowrap p-1">
                   {({ active }) => (
-                    <a
-                      className={`${active ? 'text-limeade' : 'text-gray-600'}`}
-                      href="/contact"
-                    >
-                      Contact us
-                    </a>
+                    <Link href="/contact">
+                      <a
+                        className={`${
+                          active ? 'text-limeade' : 'text-gray-600'
+                        }`}
+                      >
+                        Contact us
+                      </a>
+                    </Link>
                   )}
                 </Menu.Item>
                 <Menu.Item as="li" className="block whitespace-nowrap p-1">
                   {({ active }) => (
-                    <a
-                      className={`${active ? 'text-limeade' : 'text-gray-600'}`}
-                      href="/about"
-                    >
-                      About us
-                    </a>
+                    <Link href="/about">
+                      <a
+                        className={`${
+                          active ? 'text-limeade' : 'text-gray-600'
+                        }`}
+                      >
+                        About us
+                      </a>
+                    </Link>
                   )}
                 </Menu.Item>
               </Menu.Items>

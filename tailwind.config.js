@@ -14,6 +14,7 @@ module.exports = {
     colors: {
       gray: colors.coolGray,
       white: '#ffffff',
+      black: '#000000',
       lime: '#A6F102',
       limeade: '#6EA001',
       'verdun-green': '#486801',
@@ -21,11 +22,12 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ['Poppins', ...defaultTheme.fontFamily.sans],
+        serif: ['Lora', ...defaultTheme.fontFamily.serif],
       },
     },
   },
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/aspect-ratio')],
 }
