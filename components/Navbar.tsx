@@ -1,11 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
 import { Fragment } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import * as VisuallyHidden from '@radix-ui/react-visually-hidden'
 import { MenuIcon } from '@heroicons/react/outline'
 import { Menu, Transition } from '@headlessui/react'
 
 export const Navbar = () => {
+  const router = useRouter()
+
   return (
     <header className="shadow-md">
       <div className="bg-[#FFF1BF] text-gray-800 py-4 text-center">
@@ -32,19 +35,43 @@ export const Navbar = () => {
           <ul className="flex space-x-10">
             <li>
               <Link href="/">
-                <a className="text-gray-500">Home</a>
+                <a
+                  className={` ${
+                    router.pathname === '/'
+                      ? 'text-limeade font-semibold'
+                      : 'text-gray-500 hover:text-gray-800'
+                  }`}
+                >
+                  Home
+                </a>
               </Link>
             </li>
 
             <li>
               <Link href="/services">
-                <a className="text-gray-500">Services</a>
+                <a
+                  className={` ${
+                    router.pathname === '/services'
+                      ? 'text-limeade font-semibold'
+                      : 'text-gray-500 hover:text-gray-800'
+                  }`}
+                >
+                  Services
+                </a>
               </Link>
             </li>
 
             <li>
               <Link href="/centers">
-                <a className="text-gray-500">Centers</a>
+                <a
+                  className={` ${
+                    router.pathname === '/centers'
+                      ? 'text-limeade font-semibold'
+                      : 'text-gray-500 hover:text-gray-800'
+                  }`}
+                >
+                  Centers
+                </a>
               </Link>
             </li>
           </ul>

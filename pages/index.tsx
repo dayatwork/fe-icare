@@ -143,10 +143,10 @@ export default function Home() {
             <div className="flex justify-end mb-3">
               <div className="flex items-center space-x-2">
                 <div className="flex items-center">
-                  <StarIcon className="w-4 h-4 text-[#ffcd3c]" />
-                  <StarIcon className="w-4 h-4 text-[#ffcd3c]" />
-                  <StarIcon className="w-4 h-4 text-[#ffcd3c]" />
-                  <StarIcon className="w-4 h-4 text-[#ffcd3c]" />
+                  <StarIcon className="w-4 h-4 text-gold" />
+                  <StarIcon className="w-4 h-4 text-gold" />
+                  <StarIcon className="w-4 h-4 text-gold" />
+                  <StarIcon className="w-4 h-4 text-gold" />
                 </div>
                 <p className="text-sm">58 Rated</p>
               </div>
@@ -174,10 +174,10 @@ export default function Home() {
             <div className="flex justify-end mb-3">
               <div className="flex items-center space-x-2">
                 <div className="flex items-center">
-                  <StarIcon className="w-4 h-4 text-[#ffcd3c]" />
-                  <StarIcon className="w-4 h-4 text-[#ffcd3c]" />
-                  <StarIcon className="w-4 h-4 text-[#ffcd3c]" />
-                  <StarIcon className="w-4 h-4 text-[#ffcd3c]" />
+                  <StarIcon className="w-4 h-4 text-gold" />
+                  <StarIcon className="w-4 h-4 text-gold" />
+                  <StarIcon className="w-4 h-4 text-gold" />
+                  <StarIcon className="w-4 h-4 text-gold" />
                 </div>
                 <p className="text-sm">58 Rated</p>
               </div>
@@ -205,10 +205,10 @@ export default function Home() {
             <div className="flex justify-end mb-3">
               <div className="flex items-center space-x-2">
                 <div className="flex items-center">
-                  <StarIcon className="w-4 h-4 text-[#ffcd3c]" />
-                  <StarIcon className="w-4 h-4 text-[#ffcd3c]" />
-                  <StarIcon className="w-4 h-4 text-[#ffcd3c]" />
-                  <StarIcon className="w-4 h-4 text-[#ffcd3c]" />
+                  <StarIcon className="w-4 h-4 text-gold" />
+                  <StarIcon className="w-4 h-4 text-gold" />
+                  <StarIcon className="w-4 h-4 text-gold" />
+                  <StarIcon className="w-4 h-4 text-gold" />
                 </div>
                 <p className="text-sm">58 Rated</p>
               </div>
@@ -236,10 +236,10 @@ export default function Home() {
             <div className="flex justify-end mb-3">
               <div className="flex items-center space-x-2">
                 <div className="flex items-center">
-                  <StarIcon className="w-4 h-4 text-[#ffcd3c]" />
-                  <StarIcon className="w-4 h-4 text-[#ffcd3c]" />
-                  <StarIcon className="w-4 h-4 text-[#ffcd3c]" />
-                  <StarIcon className="w-4 h-4 text-[#ffcd3c]" />
+                  <StarIcon className="w-4 h-4 text-gold" />
+                  <StarIcon className="w-4 h-4 text-gold" />
+                  <StarIcon className="w-4 h-4 text-gold" />
+                  <StarIcon className="w-4 h-4 text-gold" />
                 </div>
                 <p className="text-sm">58 Rated</p>
               </div>
@@ -266,10 +266,10 @@ export default function Home() {
             <div className="flex justify-end mb-3">
               <div className="flex items-center space-x-2">
                 <div className="flex items-center">
-                  <StarIcon className="w-4 h-4 text-[#ffcd3c]" />
-                  <StarIcon className="w-4 h-4 text-[#ffcd3c]" />
-                  <StarIcon className="w-4 h-4 text-[#ffcd3c]" />
-                  <StarIcon className="w-4 h-4 text-[#ffcd3c]" />
+                  <StarIcon className="w-4 h-4 text-gold" />
+                  <StarIcon className="w-4 h-4 text-gold" />
+                  <StarIcon className="w-4 h-4 text-gold" />
+                  <StarIcon className="w-4 h-4 text-gold" />
                 </div>
                 <p className="text-sm">58 Rated</p>
               </div>
@@ -612,11 +612,11 @@ export default function Home() {
                 <p className="text-lg text-gray-700">Thomas Enderson</p>
                 <p className="text-gray-500 mb-2">Celebrity</p>
                 <div className="flex items-center -ml-1">
-                  <StarIcon className="w-6 h-6 text-[#ffcd3c]" />
-                  <StarIcon className="w-6 h-6 text-[#ffcd3c]" />
-                  <StarIcon className="w-6 h-6 text-[#ffcd3c]" />
-                  <StarIcon className="w-6 h-6 text-[#ffcd3c]" />
-                  <StarIcon className="w-6 h-6 text-[#ffcd3c]" />
+                  <StarIcon className="w-6 h-6 text-gold" />
+                  <StarIcon className="w-6 h-6 text-gold" />
+                  <StarIcon className="w-6 h-6 text-gold" />
+                  <StarIcon className="w-6 h-6 text-gold" />
+                  <StarIcon className="w-6 h-6 text-gold" />
                 </div>
               </div>
             </div>
@@ -644,11 +644,11 @@ export default function Home() {
                 <p className="text-lg text-gray-700">Thomas Enderson</p>
                 <p className="text-gray-500 mb-2">Celebrity</p>
                 <div className="flex items-center -ml-1">
-                  <StarIcon className="w-6 h-6 text-[#ffcd3c]" />
-                  <StarIcon className="w-6 h-6 text-[#ffcd3c]" />
-                  <StarIcon className="w-6 h-6 text-[#ffcd3c]" />
-                  <StarIcon className="w-6 h-6 text-[#ffcd3c]" />
-                  <StarIcon className="w-6 h-6 text-[#ffcd3c]" />
+                  <StarIcon className="w-6 h-6 text-gold" />
+                  <StarIcon className="w-6 h-6 text-gold" />
+                  <StarIcon className="w-6 h-6 text-gold" />
+                  <StarIcon className="w-6 h-6 text-gold" />
+                  <StarIcon className="w-6 h-6 text-gold" />
                 </div>
               </div>
             </div>
@@ -676,11 +676,11 @@ export default function Home() {
                 <p className="text-lg text-gray-700">Thomas Enderson</p>
                 <p className="text-gray-500 mb-2">Celebrity</p>
                 <div className="flex items-center -ml-1">
-                  <StarIcon className="w-6 h-6 text-[#ffcd3c]" />
-                  <StarIcon className="w-6 h-6 text-[#ffcd3c]" />
-                  <StarIcon className="w-6 h-6 text-[#ffcd3c]" />
-                  <StarIcon className="w-6 h-6 text-[#ffcd3c]" />
-                  <StarIcon className="w-6 h-6 text-[#ffcd3c]" />
+                  <StarIcon className="w-6 h-6 text-gold" />
+                  <StarIcon className="w-6 h-6 text-gold" />
+                  <StarIcon className="w-6 h-6 text-gold" />
+                  <StarIcon className="w-6 h-6 text-gold" />
+                  <StarIcon className="w-6 h-6 text-gold" />
                 </div>
               </div>
             </div>
@@ -709,11 +709,11 @@ export default function Home() {
                 <p className="text-lg text-gray-700">Thomas Enderson</p>
                 <p className="text-gray-500 mb-2">Celebrity</p>
                 <div className="flex items-center -ml-1">
-                  <StarIcon className="w-6 h-6 text-[#ffcd3c]" />
-                  <StarIcon className="w-6 h-6 text-[#ffcd3c]" />
-                  <StarIcon className="w-6 h-6 text-[#ffcd3c]" />
-                  <StarIcon className="w-6 h-6 text-[#ffcd3c]" />
-                  <StarIcon className="w-6 h-6 text-[#ffcd3c]" />
+                  <StarIcon className="w-6 h-6 text-gold" />
+                  <StarIcon className="w-6 h-6 text-gold" />
+                  <StarIcon className="w-6 h-6 text-gold" />
+                  <StarIcon className="w-6 h-6 text-gold" />
+                  <StarIcon className="w-6 h-6 text-gold" />
                 </div>
               </div>
             </div>

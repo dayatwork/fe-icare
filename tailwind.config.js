@@ -17,6 +17,7 @@ module.exports = {
       black: '#000000',
       lime: '#A6F102',
       limeade: '#6EA001',
+      gold: '#ffcd3c',
       'verdun-green': '#486801',
     },
     extend: {
@@ -29,5 +30,8 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [require('@tailwindcss/aspect-ratio')],
+  plugins: [
+    require('@tailwindcss/aspect-ratio'),
+    require('@tailwindcss/forms'),
+  ],
 }
