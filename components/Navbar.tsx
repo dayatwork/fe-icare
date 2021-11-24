@@ -11,16 +11,18 @@ export const Navbar = () => {
 
   return (
     <header className="shadow-md">
-      <div className="bg-[#FFF1BF] text-gray-800 py-4 text-center">
-        <p>
-          Book Healtcare & Wellness Centre Instantly near you.{' '}
-          <Link href="/book">
-            <a className="text-limeade font-bold hover:text-verdun-green">
-              Book Now
-            </a>
-          </Link>
-        </p>
-      </div>
+      {router.pathname === '/' && (
+        <div className="bg-[#FFF1BF] text-gray-800 py-4 text-center">
+          <p>
+            Book Healtcare & Wellness Centre Instantly near you.{' '}
+            <Link href="/book">
+              <a className="text-limeade font-bold hover:text-verdun-green">
+                Book Now
+              </a>
+            </Link>
+          </p>
+        </div>
+      )}
       <div className="max-w-7xl mx-auto py-4  px-2  flex justify-between items-center">
         <Link href="/">
           <a>
@@ -62,7 +64,7 @@ export const Navbar = () => {
             </li>
 
             <li>
-              <Link href="/centers">
+              <Link href="/centres">
                 <a
                   className={` ${
                     router.pathname === '/centers'
@@ -70,7 +72,7 @@ export const Navbar = () => {
                       : 'text-gray-500 hover:text-gray-800'
                   }`}
                 >
-                  Centers
+                  Centres
                 </a>
               </Link>
             </li>

@@ -1,19 +1,45 @@
 /* eslint-disable @next/next/no-img-element */
-import { useState } from 'react'
+import { Fragment, useState } from 'react'
+import { Listbox, Transition } from '@headlessui/react'
+import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
+import Image from 'next/image'
 import { SearchIcon, StarIcon } from '@heroicons/react/solid'
 import * as Slider from '@radix-ui/react-slider'
 
 import Layout from '@/components/Layout'
 
+const sortingParameters = [
+  {
+    id: 1,
+    name: 'Highest Price',
+  },
+  {
+    id: 2,
+    name: 'Lowest Price',
+  },
+  {
+    id: 3,
+    name: 'Review Score',
+  },
+  {
+    id: 4,
+    name: 'Highest Popularity',
+  },
+]
+
+function classNames(...classes: string[]) {
+  return classes.filter(Boolean).join(' ')
+}
+
 export default function Services() {
   const [priceRange, setPriceRange] = useState([0, 500])
-
+  const [sortBy, setSortBy] = useState(sortingParameters[3])
   return (
     <>
       {/* Search Area */}
       <div className="bg-limeade pt-5 pb-3">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="max-w-xl">
+          <div className="max-w-3xl mx-auto">
             <label htmlFor="search" className="sr-only">
               Search services
             </label>
@@ -23,7 +49,7 @@ export default function Services() {
                 name="search"
                 id="search"
                 placeholder="Search for deals, places & brands here ..."
-                className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-5 pr-12 sm:text-sm border-gray-300 rounded-full"
+                className="shadow-sm focus:ring-lebg-limeade focus:border-lebg-limeade block w-full pl-5 pr-12 sm:text-sm border-gray-300 rounded-full"
               />
               <div className="absolute inset-y-0 right-0 flex py-1 pr-1.5">
                 <button className="inline-flex items-center border border-gray-200 px-4 text-sm font-sans font-medium text-gray-400 py-1 rounded-full bg-limeade hover:bg-verdun-green">
@@ -33,7 +59,7 @@ export default function Services() {
               </div>
             </div>
           </div>
-          <ul className="flex space-x-8 items-center mt-6">
+          <ul className="flex space-x-8 items-center mt-6 justify-center">
             <li className="flex items-center text-white space-x-1">
               <img src="/images/oil-massage.png" alt="Massage" />
               <span>Massage</span>
@@ -60,7 +86,7 @@ export default function Services() {
       <div className="max-w-7xl mx-auto px-4 flex space-x-6 py-8">
         {/* Filter */}
         <div className="w-64">
-          <h3 className="font-semibold mb-4">Filter</h3>
+          <h3 className="font-semibold mb-5">Filter</h3>
           <div className="bg-white rounded-lg shadow-xl px-4 pt-4 pb-6">
             {/* Facilities */}
             <fieldset className="space-y-3">
@@ -406,9 +432,145 @@ export default function Services() {
             </fieldset>
           </div>
         </div>
-        <div className="flex-1"></div>
+        <div className="flex-1">
+          <div className="-mt-1 mb-3 flex justify-between items-center">
+            <h3 className="font-semibold ">Result</h3>
+            {/* Sort */}
+            <div className="flex items-center space-x-2">
+              <Listbox value={sortBy} onChange={setSortBy}>
+                {({ open }) => (
+                  <>
+                    <Listbox.Label className="block font-semibold">
+                      Sort by
+                    </Listbox.Label>
+                    <div className="relative w-48">
+                      <Listbox.Button className="relative w-full bg-white border border-gray-300 rounded-md shadow-sm pl-3 pr-3 py-1.5 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-lebg-limeade focus:border-lebg-limeade text-sm">
+                        <span className="flex items-center">
+                          <span className="block truncate">{sortBy.name}</span>
+                        </span>
+                        <span className="ml-3 absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                          <SelectorIcon
+                            className="h-5 w-5 text-gray-400"
+                            aria-hidden="true"
+                          />
+                        </span>
+                      </Listbox.Button>
+
+                      <Transition
+                        show={open}
+                        as={Fragment}
+                        leave="transition ease-in duration-100"
+                        leaveFrom="opacity-100"
+                        leaveTo="opacity-0"
+                      >
+                        <Listbox.Options className="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-56 rounded-md py-0.5 text-sm ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm">
+                          {sortingParameters.map((sortingParam) => (
+                            <Listbox.Option
+                              key={sortingParam.id}
+                              className={({ active }) =>
+                                classNames(
+                                  active
+                                    ? 'text-white bg-limeade'
+                                    : 'text-gray-900',
+                                  'cursor-default select-none relative py-2 pl-3 pr-9'
+                                )
+                              }
+                              value={sortingParam}
+                            >
+                              {({ selected, active }) => (
+                                <>
+                                  <div className="flex items-center">
+                                    <span
+                                      className={classNames(
+                                        selected
+                                          ? 'font-semibold'
+                                          : 'font-normal',
+                                        'block truncate'
+                                      )}
+                                    >
+                                      {sortingParam.name}
+                                    </span>
+                                  </div>
+
+                                  {selected ? (
+                                    <span
+                                      className={classNames(
+                                        active
+                                          ? 'text-white'
+                                          : 'text-lebg-limeade',
+                                        'absolute inset-y-0 right-0 flex items-center pr-4'
+                                      )}
+                                    >
+                                      <CheckIcon
+                                        className="h-5 w-5"
+                                        aria-hidden="true"
+                                      />
+                                    </span>
+                                  ) : null}
+                                </>
+                              )}
+                            </Listbox.Option>
+                          ))}
+                        </Listbox.Options>
+                      </Transition>
+                    </div>
+                  </>
+                )}
+              </Listbox>
+            </div>
+          </div>
+          <div className="grid grid-cols-4 gap-4">
+            <ServiceCard />
+            <ServiceCard />
+            <ServiceCard />
+            <ServiceCard />
+            <ServiceCard />
+            <ServiceCard />
+            <ServiceCard />
+            <ServiceCard />
+            <ServiceCard />
+            <ServiceCard />
+            <ServiceCard />
+            <ServiceCard />
+          </div>
+        </div>
       </div>
     </>
+  )
+}
+
+const ServiceCard = () => {
+  return (
+    <div className="p-4 rounded-xl shadow-md bg-white">
+      {/* Rating */}
+      <div className="flex justify-end mb-3">
+        <div className="flex items-center space-x-2">
+          <div className="flex items-center">
+            <StarIcon className="w-4 h-4 text-gold" />
+            <StarIcon className="w-4 h-4 text-gold" />
+            <StarIcon className="w-4 h-4 text-gold" />
+            <StarIcon className="w-4 h-4 text-gold" />
+          </div>
+          <p className="text-sm">58 Rated</p>
+        </div>
+      </div>
+      <div className="aspect-w-3 aspect-h-2">
+        <Image
+          src="/images/promotion-2.png"
+          alt="promotion 1"
+          layout="fill"
+          // className="object-cover"
+        />
+      </div>
+      <h3 className="mt-2 font-semibold text-lg">
+        1-Hour full Body Massage Yeo Beuty & Spa
+      </h3>
+      <p className="space-x-2 mt-6">
+        <span className="text-lg text-gray-500 line-through">RM868</span>
+        <span className="text-lg text-limeade font-semibold">RM268</span>
+      </p>
+      <p className="text-xs text-gray-600 mt-3">Taman University (5km)</p>
+    </div>
   )
 }
 

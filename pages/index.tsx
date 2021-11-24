@@ -191,7 +191,7 @@ export default function Home() {
               />
             </div>
             <h3 className="mt-2 font-semibold text-lg">
-              Cancer Beacon Screening
+              1-Hour full Body Massage Yeo Beuty & Spa
             </h3>
             <p className="space-x-2 mt-6">
               <span className="text-lg text-gray-500 line-through">RM868</span>
@@ -222,7 +222,7 @@ export default function Home() {
               />
             </div>
             <h3 className="mt-2 font-semibold text-lg">
-              Cancer Beacon Screening
+              Sinovac Booster 3rd Dose
             </h3>
             <p className="space-x-2 mt-6">
               <span className="text-lg text-gray-500 line-through">RM868</span>
@@ -253,7 +253,7 @@ export default function Home() {
               />
             </div>
             <h3 className="mt-2 font-semibold text-lg">
-              Cancer Beacon Screening
+              Zumba Class for 2-Hour
             </h3>
             <p className="space-x-2 mt-6">
               <span className="text-lg text-gray-500 line-through">RM868</span>
@@ -283,7 +283,7 @@ export default function Home() {
               />
             </div>
             <h3 className="mt-2 font-semibold text-lg">
-              Cancer Beacon Screening
+              Zumba Class for 2-Hour
             </h3>
             <p className="space-x-2 mt-6">
               <span className="text-lg text-gray-500 line-through">RM868</span>
