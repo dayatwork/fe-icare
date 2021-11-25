@@ -2,12 +2,18 @@ import { FC } from 'react'
 import { Navbar } from './Navbar'
 import { Footer } from './Footer'
 
-const Layout: FC = ({ children }) => {
+type HeadingWrapperProps = {
+  className?: string
+}
+
+const Layout: FC<HeadingWrapperProps> = ({ children, className }) => {
   return (
     // <div className="min-h-screen flex flex-col justify-between">
-    <div>
-      <Navbar />
-      <main className="bg-gray-200">{children}</main>
+    <div className={className}>
+      <div>
+        <Navbar />
+        <main className="bg-gray-200">{children}</main>
+      </div>
       <Footer />
     </div>
   )

@@ -10,7 +10,7 @@ export const Navbar = () => {
   const router = useRouter()
 
   return (
-    <header className="shadow-md">
+    <header className="shadow-md bg-white">
       {router.pathname === '/' && (
         <div className="bg-[#FFF1BF] text-gray-800 py-4 text-center">
           <p>
