@@ -49,7 +49,7 @@ export default function Services() {
                 name="search"
                 id="search"
                 placeholder="Search for deals, places & brands here ..."
-                className="shadow-sm focus:ring-lebg-limeade focus:border-lebg-limeade block w-full pl-5 pr-12 sm:text-sm border-gray-300 rounded-full"
+                className="form-input shadow-sm focus:ring-lebg-limeade focus:border-lebg-limeade block w-full pl-5 pr-12 sm:text-sm border-gray-300 rounded-full"
               />
               <div className="absolute inset-y-0 right-0 flex py-1 pr-1.5">
                 <button className="inline-flex items-center border border-gray-200 px-4 text-sm font-sans font-medium text-gray-400 py-1 rounded-full bg-limeade hover:bg-verdun-green">

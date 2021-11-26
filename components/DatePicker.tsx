@@ -32,7 +32,7 @@ export const DatePicker = ({
         </Popover.Button>
 
         <Popover.Panel className="absolute top-12 z-10 bg-white shadow-lg rounded-md overflow-hidden">
-          <div className="px-4 py-2 flex space-x-2 justify-between bg-limeade">
+          <div className="px-4 py-3 flex space-x-2 justify-between bg-limeade">
             <button
               className="px-3 py-1 bg-gray-100 rounded-md hover:bg-gray-300"
               onClick={() => setSelectedYear((prev) => prev - 1)}
@@ -55,7 +55,7 @@ export const DatePicker = ({
             </button>
           </div>
           <RadioGroup
-            className="p-2"
+            className="px-2 py-3"
             value={selectedMonth}
             onChange={setSelectedMonth}
           >
