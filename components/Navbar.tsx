@@ -1,13 +1,29 @@
 /* eslint-disable @next/next/no-img-element */
-import { Fragment } from 'react'
+import { Fragment, useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useRouter } from 'next/router'
 import * as VisuallyHidden from '@radix-ui/react-visually-hidden'
 import { MenuIcon } from '@heroicons/react/outline'
 import { Menu, Transition } from '@headlessui/react'
+import { parseCookies, destroyCookie } from 'nookies'
 
 export const Navbar = () => {
   const router = useRouter()
+  const cookies = parseCookies()
+  const [loggedIn, setLoggedId] = useState(false)
+
+  useEffect(() => {
+    if (cookies.accessToken) {
+      setLoggedId(true)
+    }
+  }, [cookies.accessToken])
+
+  const handleLogout = () => {
+    destroyCookie(null, 'accessToken')
+    setLoggedId(false)
+    router.replace('/')
+  }
 
   return (
     <header className="shadow-md bg-white">
@@ -79,9 +95,81 @@ export const Navbar = () => {
           </ul>
         </nav>
         <div className="flex items-center space-x-6">
-          <button className="px-4 py-1.5 bg-limeade hover:bg-verdun-green rounded-full text-white transition">
-            Login
-          </button>
+          {loggedIn ? (
+            <Menu as="nav" className="relative">
+              <Menu.Button className="flex items-center space-x-2">
+                <p className="text-sm mr-4">Zahrina Anwar</p>
+                <Image
+                  width={35}
+                  height={35}
+                  className="object-cover rounded-full"
+                  src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100"
+                  alt="user photo"
+                />
+              </Menu.Button>
+              <Transition
+                as={Fragment}
+                enter="transition ease-out duration-100"
+                enterFrom="transform opacity-0 scale-95"
+                enterTo="transform opacity-100 scale-100"
+                leave="transition ease-in duration-75"
+                leaveFrom="transform opacity-100 scale-100"
+                leaveTo="transform opacity-0 scale-95"
+              >
+                <Menu.Items
+                  as="ul"
+                  className="absolute right-0 origin-top-right shadow-lg flex flex-col p-4 z-10 border-gray-400 border-1 mt-2 bg-gray-50"
+                >
+                  <Menu.Item as="li" className="block whitespace-nowrap p-1">
+                    {({ active }) => (
+                      <Link href="/my-account">
+                        <a
+                          className={`block ${
+                            active ? 'text-limeade' : 'text-gray-600'
+                          }`}
+                        >
+                          My Account
+                        </a>
+                      </Link>
+                    )}
+                  </Menu.Item>
+                  <Menu.Item as="li" className="block whitespace-nowrap p-1">
+                    {({ active }) => (
+                      <Link href="/my-booking">
+                        <a
+                          className={`block ${
+                            active ? 'text-limeade' : 'text-gray-600'
+                          }`}
+                        >
+                          My Booking
+                        </a>
+                      </Link>
+                    )}
+                  </Menu.Item>
+                  <Menu.Item as="li" className="block whitespace-nowrap p-1">
+                    {({ active }) => (
+                      <button
+                        className={`block ${
+                          active ? 'text-limeade' : 'text-gray-600'
+                        }`}
+                        onClick={handleLogout}
+                      >
+                        Logout
+                      </button>
+                    )}
+                  </Menu.Item>
+                </Menu.Items>
+              </Transition>
+            </Menu>
+          ) : (
+            <>
+              <Link href="/login">
+                <a className="px-4 py-1.5 bg-limeade hover:bg-verdun-green rounded-full text-white transition">
+                  Login
+                </a>
+              </Link>
+            </>
+          )}
           <Menu as="nav" className="relative">
             <Menu.Button className="p-2 hover:bg-gray-200 rounded-md transition">
               <MenuIcon className="w-5 h-5" />
@@ -102,29 +190,32 @@ export const Navbar = () => {
               >
                 <Menu.Item as="li" className="block whitespace-nowrap p-1">
                   {({ active }) => (
-                    <a
+                    <span
                       className={`${active ? 'text-limeade' : 'text-gray-600'}`}
-                      href="/download"
+                      // href="/download"
                     >
                       Download i-Care Apps
-                    </a>
+                    </span>
                   )}
                 </Menu.Item>
                 <Menu.Item as="li" className="block whitespace-nowrap p-1">
                   {({ active }) => (
-                    <a
-                      className={`${active ? 'text-limeade' : 'text-gray-600'}`}
-                      href="/benefits"
-                    >
-                      Member Benefits
-                    </a>
+                    <Link href="/member-benefit">
+                      <a
+                        className={`block ${
+                          active ? 'text-limeade' : 'text-gray-600'
+                        }`}
+                      >
+                        Member Benefit
+                      </a>
+                    </Link>
                   )}
                 </Menu.Item>
                 <Menu.Item as="li" className="block whitespace-nowrap p-1">
                   {({ active }) => (
                     <Link href="/contact">
                       <a
-                        className={`${
+                        className={`block ${
                           active ? 'text-limeade' : 'text-gray-600'
                         }`}
                       >
@@ -137,7 +228,7 @@ export const Navbar = () => {
                   {({ active }) => (
                     <Link href="/about">
                       <a
-                        className={`${
+                        className={`block ${
                           active ? 'text-limeade' : 'text-gray-600'
                         }`}
                       >

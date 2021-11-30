@@ -628,8 +628,8 @@ export default function Home() {
           <div className="aspect-w-1 asect-h-6 w-1/3 h-[700px]">
             <Image
               layout="fill"
-              src="/images/phone.png"
-              alt="Phone"
+              src="/images/mobile-app.png"
+              alt="Mobile App"
               className="object-contain"
             />
           </div>

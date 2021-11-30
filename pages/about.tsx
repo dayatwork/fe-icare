@@ -2,12 +2,12 @@ import Layout from '@/components/Layout'
 
 export default function About() {
   return (
-    <div className="bg-[#DEB6AD] py-20">
-      <h1 className="text-4xl text-white mb-4 text-center">About Us</h1>
+    <section className="bg-limeade py-20">
+      <h1 className="text-4xl text-white mb-4 text-center">About i-Care</h1>
       <p className="text-white text-center text-lg">
         Intelligent Clinical Assessment Rehabilitation and Enrinchment (i-Care)
       </p>
-    </div>
+    </section>
   )
 }
 

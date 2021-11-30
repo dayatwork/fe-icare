@@ -1,6 +1,20 @@
+import { useEffect } from 'react'
+import { useRouter } from 'next/router'
+import { parseCookies } from 'nookies'
 import Layout from '@/components/Layout'
 
 export default function Dashboard() {
+  const router = useRouter()
+  const cookies = parseCookies()
+
+  useEffect(() => {
+    if (!cookies.accessToken) {
+      router.replace('/login')
+    }
+  }, [cookies.accessToken, router])
+
+  if (!cookies.accessToken) return null
+
   return (
     <div className="bg-white">
       <div className="max-w-7xl px-4 mx-auto py-14">

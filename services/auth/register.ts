@@ -16,6 +16,28 @@ export const register = async ({ identity }: { identity: string }) => {
   return await res.json()
 }
 
+export const login = async ({
+  username,
+  password,
+}: {
+  username: string
+  password: string
+}) => {
+  const data = {
+    username,
+    password,
+  }
+
+  const res = await fetch(`${process.env.NEXT_PUBLIC_AUTH_API}/login`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  })
+  return await res.json()
+}
+
 export const verifyPin = async ({
   identity,
   verification_pin,
