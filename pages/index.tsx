@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Marquee from 'react-fast-marquee'
+import { CheckIcon } from '@heroicons/react/outline'
 import { Carousel } from 'react-responsive-carousel'
 import MultiCarousel from 'react-multi-carousel'
 import { StarIcon } from '@heroicons/react/solid'
@@ -586,6 +587,124 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="bg-white py-6 tablet:py-10 desktop:py-16">
+        <h2 className="text-2xl font-semibold mb-8 text-center">
+          How we are functioning
+        </h2>
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="aspect-w-3 aspect-h-2">
+            <Image
+              className="object-cover"
+              layout="fill"
+              src="/images/how-we-are-functioning.jpg"
+              alt="How we are functioning"
+            />
+          </div>
+        </div>
+      </section>
+      <section className="py-6 tablet:py-10 desktop:py-16 max-w-7xl mx-auto px-6">
+        <h2 className="text-2xl font-semibold mb-8 text-limeade">
+          Best South-East Asia Destination for Healthcare & Wellness
+        </h2>
+        <p className="max-w-5xl text-xl">
+          i-care brings you discounted offers on awesome wellness services
+          experience in your city – all from a single, convenient mobile apps
+          and website Browse through thousands of i-Care Deals and save up to
+          80% at your favourite spas, salons, gyms, massage centre and more. Or
+          pay your bills quickly and easily with e-wallet and get rewarded with
+          up to 30% cashback.(T&C applied)
+        </p>
+      </section>
+      <div className="aspect-w-3 aspect-h-1">
+        <Image
+          layout="fill"
+          src="/images/yoga.jpg"
+          alt="Yoga"
+          className="object-cover"
+        />
+      </div>
+      <section className="max-w-7xl mx-auto px-6 py-6 tablet:py-10 desktop:pt-24 desktop:pb-16">
+        <div className="flex space-x-10">
+          <div className="aspect-w-1 asect-h-6 w-1/3 h-[700px]">
+            <Image
+              layout="fill"
+              src="/images/phone.png"
+              alt="Phone"
+              className="object-contain"
+            />
+          </div>
+          <div className="p-10">
+            <h2 className="text-3xl font-semibold mb-8 text-limeade max-w-lg">
+              The only booking Platform that subscription-free
+            </h2>
+            <ul className="space-y-4">
+              <li className="flex space-x-2 items-center">
+                <CheckIcon className="w-6 h-6 text-limeade " />
+                <p className="text-lg">Free unlimited real-time scheduling</p>
+              </li>
+              <li className="flex space-x-2 items-center">
+                <CheckIcon className="w-6 h-6 text-limeade " />
+                <p className="text-lg">Free multiple location management</p>
+              </li>
+              <li className="flex space-x-2 items-center">
+                <CheckIcon className="w-6 h-6 text-limeade " />
+                <p className="text-lg">
+                  Free analytics and financial management
+                </p>
+              </li>
+              <li className="flex space-x-2 items-center">
+                <CheckIcon className="w-6 h-6 text-limeade " />
+                <p className="text-lg">
+                  Free staff management and salary payment
+                </p>
+              </li>
+              <li className="flex space-x-2 items-center">
+                <CheckIcon className="w-6 h-6 text-limeade " />
+                <p className="text-lg">
+                  Free in-app payment for user convenince
+                </p>
+              </li>
+              <li className="flex space-x-2 items-center">
+                <CheckIcon className="w-6 h-6 text-limeade " />
+                <p className="text-lg">
+                  Free customer management according to updated SOP by
+                  government
+                </p>
+              </li>
+              <li className="flex space-x-2 items-center">
+                <CheckIcon className="w-6 h-6 text-limeade " />
+                <p className="text-lg">
+                  Free one simple solution to everything you need to run your
+                  bussiness
+                </p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section className="bg-white px-6 py-6 tablet:py-10">
+        <div className="max-w-7xl mx-auto  flex space-x-10 items-center justify-between">
+          <div className="p-10">
+            <h2 className="text-3xl font-semibold mb-8 text-limeade max-w-lg">
+              Free IoT Temperature and Automated hand Sanitizer
+            </h2>
+            <p className="text-xl max-w-xl">
+              An temperature scanner with automated hand sanitizer which is
+              integrated with mobile apps for Covid-19 risk assessment given
+              FREE for our business partners.
+            </p>
+          </div>
+          <div className="aspect-w-1 asect-h-6 w-1/3 h-[700px]">
+            <Image
+              layout="fill"
+              src="/images/hand-sanitizer.png"
+              alt="Hand Sanitizer"
+              className="object-contain"
+            />
+          </div>
+        </div>
+      </section>
+
       {/* Testimonials */}
       <section className="py-6 tablet:py-10 desktop:py-16">
         <h2 className="text-2xl font-semibold mb-2 text-center">
@@ -727,61 +846,6 @@ export default function Home() {
             </div>
           </div>
         </Marquee>
-      </section>
-
-      {/* Partnership */}
-      <section className="bg-white py-6 tablet:py-10 desktop:py-16">
-        <h2 className="text-2xl font-semibold mb-8 text-center">Our Partner</h2>
-        <div className="max-w-7xl mx-auto mt-6 grid grid-cols-3 gap-2 lg:mt-8 mb-10">
-          <div className="col-span-1 flex justify-center py-4 px-8 bg-gray-50">
-            <Image
-              width={140}
-              height={140}
-              src="https://tailwindui.com/img/logos/transistor-logo-gray-400.svg"
-              alt="Workcation"
-            />
-          </div>
-          <div className="col-span-1 flex justify-center py-4 px-8 bg-gray-50">
-            <Image
-              width={140}
-              height={140}
-              src="https://tailwindui.com/img/logos/mirage-logo-gray-400.svg"
-              alt="Mirage"
-            />
-          </div>
-          <div className="col-span-1 flex justify-center py-4 px-8 bg-gray-50">
-            <Image
-              width={140}
-              height={140}
-              src="https://tailwindui.com/img/logos/tuple-logo-gray-400.svg"
-              alt="Tuple"
-            />
-          </div>
-          <div className="col-span-1 flex justify-center py-4 px-8 bg-gray-50">
-            <Image
-              width={140}
-              height={140}
-              src="https://tailwindui.com/img/logos/laravel-logo-gray-400.svg"
-              alt="Laravel"
-            />
-          </div>
-          <div className="col-span-1 flex justify-center py-4 px-8 bg-gray-50">
-            <Image
-              width={140}
-              height={140}
-              src="https://tailwindui.com/img/logos/statickit-logo-gray-400.svg"
-              alt="StaticKit"
-            />
-          </div>
-          <div className="col-span-1 flex justify-center py-4 px-8 bg-gray-50">
-            <Image
-              width={140}
-              height={140}
-              src="https://tailwindui.com/img/logos/statamic-logo-gray-400.svg"
-              alt="Statamic"
-            />
-          </div>
-        </div>
       </section>
     </>
   )
