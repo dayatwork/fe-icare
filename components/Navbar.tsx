@@ -41,7 +41,7 @@ export const Navbar = () => {
             </p>
             <button
               onClick={() => setShowBanner(false)}
-              className="absolute top-0 right-6 text-limeade hover:text-verdun-green hover:bg-limeade hover:bg-opacity-30 p-1"
+              className="absolute top-0 right-6 text-limeade hover:text-verdun-green hover:bg-limeade hover:bg-opacity-30 p-1 rounded-md"
             >
               <span className="sr-only">Close Banner</span>
               <XIcon className="w-5 h-5" />
