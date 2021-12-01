@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-// const colors = require('tailwindcss/colors')
+const colors = require('tailwindcss/colors')
 const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
@@ -11,21 +11,20 @@ module.exports = {
       tablet: '960px',
       desktop: '1248px',
     },
-
+    colors: {
+      gray: colors.coolGray,
+      red: colors.red,
+      white: '#ffffff',
+      black: '#000000',
+      lime: '#A6F102',
+      limeade: '#6EA001',
+      gold: '#ffcd3c',
+      'verdun-green': '#486801',
+    },
     extend: {
       fontFamily: {
         sans: ['Poppins', ...defaultTheme.fontFamily.sans],
         serif: ['Lora', ...defaultTheme.fontFamily.serif],
-      },
-      colors: {
-        // gray: colors.coolGray,
-        // red: colors.red,
-        // white: '#ffffff',
-        // black: '#000000',
-        lime: '#A6F102',
-        limeade: '#6EA001',
-        gold: '#ffcd3c',
-        'verdun-green': '#486801',
       },
     },
   },

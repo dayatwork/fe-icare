@@ -2,10 +2,14 @@
 // import Image from 'next/image'
 import { Carousel } from 'react-responsive-carousel'
 import { StarIcon } from '@heroicons/react/solid'
+import { useRouter } from 'next/router'
+import Link from 'next/link'
 
 import Layout from '@/components/Layout'
 
 export default function Services() {
+  const router = useRouter()
+
   return (
     <div className="max-w-7xl mx-auto px-4">
       <div className="grid grid-cols-3 gap-10 py-6">
@@ -82,7 +86,11 @@ export default function Services() {
               <p className="text-sm">58 Rated</p>
             </div>
             <p className="text-xs text-gray-600 mt-3">Taman University (5km)</p>
-            <button className="btn-primary mt-5 w-full">Book now</button>
+            <Link href={`/booking/service/${router.query.slug}`}>
+              <a className="btn-primary mt-5 w-full block text-center">
+                Book now
+              </a>
+            </Link>
           </div>
 
           <div className="bg-white shadow-md rounded-md px-6 py-4 mb-6">

@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { Fragment, useState } from 'react'
+import Link from 'next/link'
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 import Image from 'next/image'
@@ -98,7 +99,7 @@ export default function Centres() {
                     aria-describedby="wifi-description"
                     name="wifi"
                     type="checkbox"
-                    className="focus:ring-limeade h-4 w-4 text-limeade border-gray-300 rounded"
+                    className="form-checkbox focus:ring-limeade h-4 w-4 text-limeade border-gray-300 rounded"
                   />
                 </div>
                 <div className="ml-3 text-sm">
@@ -117,7 +118,7 @@ export default function Centres() {
                     aria-describedby="parking-description"
                     name="parking"
                     type="checkbox"
-                    className="focus:ring-limeade h-4 w-4 text-limeade border-gray-300 rounded"
+                    className="form-checkbox focus:ring-limeade h-4 w-4 text-limeade border-gray-300 rounded"
                   />
                 </div>
                 <div className="ml-3 text-sm">
@@ -139,7 +140,7 @@ export default function Centres() {
                     aria-describedby="wheelchair-access-description"
                     name="wheelchair-access"
                     type="checkbox"
-                    className="focus:ring-limeade h-4 w-4 text-limeade border-gray-300 rounded"
+                    className="form-checkbox focus:ring-limeade h-4 w-4 text-limeade border-gray-300 rounded"
                   />
                 </div>
                 <div className="ml-3 text-sm">
@@ -164,7 +165,7 @@ export default function Centres() {
                     aria-describedby="elevator-description"
                     name="elevator"
                     type="checkbox"
-                    className="focus:ring-limeade h-4 w-4 text-limeade border-gray-300 rounded"
+                    className="form-checkbox focus:ring-limeade h-4 w-4 text-limeade border-gray-300 rounded"
                   />
                 </div>
                 <div className="ml-3 text-sm">
@@ -186,7 +187,7 @@ export default function Centres() {
                     aria-describedby="public-transport-access-description"
                     name="public-transport-access"
                     type="checkbox"
-                    className="focus:ring-limeade h-4 w-4 text-limeade border-gray-300 rounded"
+                    className="form-checkbox focus:ring-limeade h-4 w-4 text-limeade border-gray-300 rounded"
                   />
                 </div>
                 <div className="ml-3 text-sm">
@@ -218,7 +219,7 @@ export default function Centres() {
                     aria-describedby="free-cancellation-description"
                     name="free-cancellation"
                     type="checkbox"
-                    className="focus:ring-limeade h-4 w-4 text-limeade border-gray-300 rounded"
+                    className="form-checkbox focus:ring-limeade h-4 w-4 text-limeade border-gray-300 rounded"
                   />
                 </div>
                 <div className="ml-3 text-sm">
@@ -275,7 +276,7 @@ export default function Centres() {
                       ])
                     }
                     type="number"
-                    className="w-16 px-2 py-1 border-gray-300 rounded-lg"
+                    className="form-input w-16 px-2 py-1 border-gray-300 rounded-lg"
                     min={0}
                     max={999}
                   />
@@ -298,7 +299,7 @@ export default function Centres() {
                       ])
                     }
                     type="number"
-                    className="w-16 px-2 py-1 border-gray-300 rounded-lg"
+                    className="form-input w-16 px-2 py-1 border-gray-300 rounded-lg"
                     min={0}
                     max={999}
                   />
@@ -316,7 +317,7 @@ export default function Centres() {
                     aria-describedby="5-star-description"
                     name="5-star"
                     type="checkbox"
-                    className="focus:ring-limeade h-4 w-4 text-limeade border-gray-300 rounded"
+                    className="form-checkbox focus:ring-limeade h-4 w-4 text-limeade border-gray-300 rounded"
                   />
                 </div>
                 <div className="ml-3 text-sm">
@@ -342,7 +343,7 @@ export default function Centres() {
                     aria-describedby="4-star-description"
                     name="4-star"
                     type="checkbox"
-                    className="focus:ring-limeade h-4 w-4 text-limeade border-gray-300 rounded"
+                    className="form-checkbox focus:ring-limeade h-4 w-4 text-limeade border-gray-300 rounded"
                   />
                 </div>
                 <div className="ml-3 text-sm">
@@ -367,7 +368,7 @@ export default function Centres() {
                     aria-describedby="3-star-description"
                     name="3-star"
                     type="checkbox"
-                    className="focus:ring-limeade h-4 w-4 text-limeade border-gray-300 rounded"
+                    className="form-checkbox focus:ring-limeade h-4 w-4 text-limeade border-gray-300 rounded"
                   />
                 </div>
                 <div className="ml-3 text-sm">
@@ -391,7 +392,7 @@ export default function Centres() {
                     aria-describedby="2-star-description"
                     name="2-star"
                     type="checkbox"
-                    className="focus:ring-limeade h-4 w-4 text-limeade border-gray-300 rounded"
+                    className="form-checkbox focus:ring-limeade h-4 w-4 text-limeade border-gray-300 rounded"
                   />
                 </div>
                 <div className="ml-3 text-sm">
@@ -414,7 +415,7 @@ export default function Centres() {
                     aria-describedby="1-star-description"
                     name="1-star"
                     type="checkbox"
-                    className="focus:ring-limeade h-4 w-4 text-limeade border-gray-300 rounded"
+                    className="form-checkbox focus:ring-limeade h-4 w-4 text-limeade border-gray-300 rounded"
                   />
                 </div>
                 <div className="ml-3 text-sm">
@@ -565,9 +566,11 @@ const CentreCard = () => {
       <p className="text-xs text-gray-500">Beauty Centre</p>
       <div className="flex items-center justify-between mt-3">
         <p className="text-sm text-limeade">Taman University (5km)</p>
-        <button className="text-sm py-1 px-2 rounded-md bg-limeade text-white hover:bg-verdun-green">
-          Learn More
-        </button>
+        <Link href="/centres/123">
+          <a className="text-sm py-1 px-2 rounded-md bg-limeade text-white hover:bg-verdun-green">
+            Learn More
+          </a>
+        </Link>
       </div>
     </div>
   )

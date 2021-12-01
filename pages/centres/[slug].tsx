@@ -3,10 +3,14 @@
 import { Carousel } from 'react-responsive-carousel'
 import { StarIcon } from '@heroicons/react/solid'
 import Image from 'next/image'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 import Layout from '@/components/Layout'
 
 export default function Centres() {
+  const router = useRouter()
+
   return (
     <div className="max-w-7xl mx-auto px-4">
       <div className="grid grid-cols-3 gap-10 py-6">
@@ -123,14 +127,16 @@ export default function Centres() {
               </dd>
             </dl>
 
-            <button className="bg-limeade text-white rounded-lg hover:bg-verdun-green transition mt-5 w-full pt-2 pb-3">
-              <span className="text-lg font-bold block text-center">
-                Book An Appointment
-              </span>
-              <span className="block text-center text-sm">
-                With booking fee <span className="font-semibold">RM10</span>
-              </span>
-            </button>
+            <Link href={`/booking/centre/${router.query.slug}`}>
+              <a className="block bg-limeade text-white rounded-lg hover:bg-verdun-green transition mt-5 w-full pt-2 pb-3">
+                <span className="text-lg font-bold block text-center">
+                  Book An Appointment
+                </span>
+                <span className="block text-center text-sm">
+                  With booking fee <span className="font-semibold">RM10</span>
+                </span>
+              </a>
+            </Link>
           </div>
 
           <div className="bg-white shadow-md rounded-md px-6 py-4 mb-6">
