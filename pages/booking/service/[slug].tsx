@@ -6,7 +6,7 @@ import { RadioGroup } from '@headlessui/react'
 import Layout from '@/components/Layout'
 import { DatePicker } from '@/components/DatePicker'
 
-export default function Booking() {
+export default function BookingService() {
   const [selectedMonth, setSelectedMonth] = useState('November')
   const [selectedYear, setSelectedYear] = useState(2021)
   const [selectedDate, setSelectedDate] = useState(12)
@@ -151,7 +151,7 @@ export default function Booking() {
   )
 }
 
-Booking.getLayout = function getLayout(page: JSX.Element) {
+BookingService.getLayout = function getLayout(page: JSX.Element) {
   return (
     <Layout className="min-h-screen flex flex-col bg-gray-200 justify-between">
       {page}

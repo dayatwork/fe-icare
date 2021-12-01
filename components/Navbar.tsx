@@ -83,7 +83,7 @@ export const Navbar = () => {
               <Link href="/centres">
                 <a
                   className={` ${
-                    router.pathname === '/centers'
+                    router.pathname === '/centres'
                       ? 'text-limeade font-semibold'
                       : 'text-gray-500 hover:text-gray-800'
                   }`}
