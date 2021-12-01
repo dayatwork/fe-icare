@@ -1,4 +1,5 @@
-import { FormEvent, useState } from 'react'
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { FormEvent, useState, useRef, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { EyeIcon, EyeOffIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
@@ -15,22 +16,41 @@ export default function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setIsLoading] = useState(false)
+  const emailRef = useRef<HTMLInputElement>(null)
+
+  useEffect(() => {
+    emailRef.current?.focus()
+  }, [])
 
   const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsLoading(true)
-    const res = await login({ username: email, password })
-    console.log({ res })
-    setCookie(null, 'accessToken', res.data.token, {
-      maxAge: 30 * 24 * 60 * 60,
-      path: '/',
-    })
-    setIsLoading(false)
-    toast.success('You are logged in', {
-      duration: 5000,
-      position: 'top-right',
-    })
-    router.replace('/')
+    try {
+      const res = await login({ username: email, password })
+
+      // Backend wrong status code
+      if (res.type !== 'success') {
+        throw new Error(res.message)
+      }
+
+      setCookie(null, 'accessToken', res.data.token, {
+        maxAge: 30 * 24 * 60 * 60,
+        path: '/',
+      })
+      setIsLoading(false)
+      toast.success('You are logged in', {
+        duration: 5000,
+        position: 'top-right',
+      })
+      router.replace('/')
+    } catch (error: any) {
+      setIsLoading(false)
+      toast.error(error.message, {
+        duration: 5000,
+        position: 'top-right',
+      })
+      emailRef.current?.focus()
+    }
   }
 
   return (
@@ -50,6 +70,7 @@ export default function Login() {
               <input
                 id="email"
                 type="email"
+                ref={emailRef}
                 autoComplete="username"
                 className="appearance-none block w-full px-3 py-2  placeholder-gray-400 focus:outline-none sm:text-sm border-b-2 border-gray-300"
                 value={email}
