@@ -1,13 +1,28 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @next/next/no-img-element */
 import { useState, useRef } from 'react'
-import Layout from '@/components/Layout'
 import { XIcon } from '@heroicons/react/outline'
+import { useRouter } from 'next/router'
+import { parseCookies } from 'nookies'
+import { useEffect } from 'react'
+
+import Layout from '@/components/Layout'
 
 export default function MyAccount() {
   const [photo, setPhoto] = useState<any>('')
   const [img, setImg] = useState('')
   const photoRef = useRef<HTMLInputElement>(null)
+
+  const router = useRouter()
+  const cookies = parseCookies()
+
+  useEffect(() => {
+    if (!cookies.accessToken) {
+      router.replace('/login')
+    }
+  }, [cookies.accessToken, router])
+
+  if (!cookies.accessToken) return null
 
   return (
     <div className="bg-white">

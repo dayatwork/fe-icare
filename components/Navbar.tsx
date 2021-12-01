@@ -4,7 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import * as VisuallyHidden from '@radix-ui/react-visually-hidden'
-import { MenuIcon } from '@heroicons/react/outline'
+import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import { Menu, Transition } from '@headlessui/react'
 import { parseCookies, destroyCookie } from 'nookies'
 
@@ -12,6 +12,7 @@ export const Navbar = () => {
   const router = useRouter()
   const cookies = parseCookies()
   const [loggedIn, setLoggedId] = useState(false)
+  const [showBanner, setShowBanner] = useState(true)
 
   useEffect(() => {
     if (cookies.accessToken) {
@@ -27,16 +28,25 @@ export const Navbar = () => {
 
   return (
     <header className="shadow-md bg-white">
-      {router.pathname === '/' && (
-        <div className="bg-[#FFF1BF] text-gray-800 py-4 text-center">
-          <p>
-            Book Healtcare & Wellness Centre Instantly near you.{' '}
-            <Link href="/book">
-              <a className="text-limeade font-bold hover:text-verdun-green">
-                Book Now
-              </a>
-            </Link>
-          </p>
+      {router.pathname === '/' && showBanner && (
+        <div className="bg-[#FFF1BF] text-gray-800 py-4">
+          <div className="text-center relative max-w-7xl mx-auto">
+            <p>
+              Book Healtcare & Wellness Centre Instantly near you.{' '}
+              <Link href="/book">
+                <a className="text-limeade font-bold hover:text-verdun-green">
+                  Book Now
+                </a>
+              </Link>
+            </p>
+            <button
+              onClick={() => setShowBanner(false)}
+              className="absolute top-0 right-6 text-limeade hover:text-verdun-green hover:bg-limeade hover:bg-opacity-30 p-1"
+            >
+              <span className="sr-only">Close Banner</span>
+              <XIcon className="w-5 h-5" />
+            </button>
+          </div>
         </div>
       )}
       <div className="max-w-7xl mx-auto py-4  px-2  flex justify-between items-center">
