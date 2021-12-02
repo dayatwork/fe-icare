@@ -2,11 +2,17 @@
 // import Image from 'next/image'
 import { useState } from 'react'
 import { RadioGroup } from '@headlessui/react'
+import { parseCookies } from 'nookies'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 import Layout from '@/components/Layout'
 import { DatePicker } from '@/components/DatePicker'
+import { LockClosedIcon } from '@heroicons/react/outline'
 
 export default function BookingService() {
+  const router = useRouter()
+  const cookies = parseCookies()
   const [selectedMonth, setSelectedMonth] = useState('November')
   const [selectedYear, setSelectedYear] = useState(2021)
   const [selectedDate, setSelectedDate] = useState(12)
@@ -143,7 +149,16 @@ export default function BookingService() {
               </li>
             </ul>
 
-            <button className="btn-primary mt-5 w-full">Make Payment</button>
+            {cookies && cookies.accessToken ? (
+              <button className="btn-primary mt-5 w-full">Make Payment</button>
+            ) : (
+              <Link href={`/login?from=${router.asPath}`}>
+                <a className="btn-primary mt-5 w-full flex justify-center items-center space-x-2">
+                  <span>Login to Make Payment</span>{' '}
+                  <LockClosedIcon className="w-5 h-5 -mt-0.5" />
+                </a>
+              </Link>
+            )}
           </div>
         </div>
       </div>

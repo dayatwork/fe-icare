@@ -530,7 +530,7 @@ export default function Home() {
                 width={100}
                 height={100}
               />
-              <div className="text-lg text-limeade font-bold">Best N</div>
+              <div className="text-lg text-limeade font-bold">Best</div>
               <p className="text-xl text-center">
                 We provides integrated hardware with software system for FREE
                 covid-19 assessment to ensure safe environment for both customer

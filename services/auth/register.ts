@@ -38,6 +38,52 @@ export const login = async ({
   return await res.json()
 }
 
+export const forgotPassword = async ({ username }: { username: string }) => {
+  const data = {
+    app: 'icare',
+    username,
+  }
+
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_AUTH_API}/login/forgot-password`,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    }
+  )
+  return await res.json()
+}
+
+export const resetPassword = async ({
+  password,
+  token,
+}: {
+  password: string
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  token: any
+}) => {
+  const data = {
+    app: 'icare',
+    password,
+    token,
+  }
+
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_AUTH_API}/login/reset-password`,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    }
+  )
+  return await res.json()
+}
+
 export const verifyPin = async ({
   identity,
   verification_pin,

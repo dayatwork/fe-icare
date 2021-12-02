@@ -21,7 +21,7 @@ export const Navbar = () => {
   }, [cookies.accessToken])
 
   const handleLogout = () => {
-    destroyCookie(null, 'accessToken')
+    destroyCookie({}, 'accessToken')
     setLoggedId(false)
     router.replace('/')
   }
@@ -186,8 +186,8 @@ export const Navbar = () => {
                   >
                     {({ active }) => (
                       <button
-                        className={`block ${
-                          active ? 'text-limeade' : 'text-red-600'
+                        className={`block w-full text-left ${
+                          active ? 'text-red-700' : 'text-red-600'
                         }`}
                         onClick={handleLogout}
                       >

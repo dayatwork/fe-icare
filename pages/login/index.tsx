@@ -12,11 +12,13 @@ import AuthLayout from '@/components/AuthLayout'
 
 export default function Login() {
   const router = useRouter()
-  const [showPassword, setShowPassword] = useState(false)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [showPassword, setShowPassword] = useState(false)
   const [loading, setIsLoading] = useState(false)
   const emailRef = useRef<HTMLInputElement>(null)
+
+  console.log({ router })
 
   useEffect(() => {
     emailRef.current?.focus()
@@ -42,7 +44,7 @@ export default function Login() {
         duration: 5000,
         position: 'top-right',
       })
-      router.replace('/')
+      router.replace(router.query.from ? router.query.from.toString() : '/')
     } catch (error: any) {
       setIsLoading(false)
       toast.error(error.message, {
@@ -79,14 +81,14 @@ export default function Login() {
             </div>
           </div>
 
-          <div className="mb-4">
+          <div className="mb-2">
             <label
               htmlFor="password"
               className="block text-sm font-medium text-gray-700"
             >
               Password
             </label>
-            <div className="mt-1 relative shadow-sm">
+            <div className="mt-1 relative shadow-sm mb-2">
               <input
                 id="password"
                 autoComplete="current-password"
@@ -107,9 +109,14 @@ export default function Login() {
                 )}
               </button>
             </div>
+            <Link href="/forgot-password">
+              <a className="text-limeade hover:text-verdun-green text-right text-sm block hover:underline">
+                Forgot password?
+              </a>
+            </Link>
           </div>
 
-          <div className="mb-6 mt-10">
+          <div className="mb-6 mt-8">
             <button className="btn-primary w-full" disabled={loading}>
               {loading ? 'Submitting...' : 'Log in'}
             </button>
