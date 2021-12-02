@@ -7,6 +7,7 @@ import toast from 'react-hot-toast'
 import { setCookie } from 'nookies'
 
 import { login } from 'services/auth/register'
+import { getUserDetail } from 'services/user/user'
 
 import AuthLayout from '@/components/AuthLayout'
 
@@ -29,6 +30,7 @@ export default function Login() {
     setIsLoading(true)
     try {
       const res = await login({ username: email, password })
+      console.log({ res })
 
       // Backend wrong status code
       if (res.type !== 'success') {
@@ -39,11 +41,22 @@ export default function Login() {
         maxAge: 30 * 24 * 60 * 60,
         path: '/',
       })
+      const userDetail = await getUserDetail()
+      setCookie(
+        null,
+        'user',
+        JSON.stringify({
+          id: userDetail?.data?.id,
+          name: userDetail?.data?.name,
+          email: userDetail?.data?.email,
+        })
+      )
       setIsLoading(false)
       toast.success('You are logged in', {
         duration: 5000,
         position: 'top-right',
       })
+
       router.replace(router.query.from ? router.query.from.toString() : '/')
     } catch (error: any) {
       setIsLoading(false)

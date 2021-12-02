@@ -15,10 +15,10 @@ import { LockClosedIcon } from '@heroicons/react/outline'
 export default function BookingCentre() {
   const router = useRouter()
   const cookies = parseCookies()
-  const [selectedMonth, setSelectedMonth] = useState(11)
-  const [selectedYear, setSelectedYear] = useState(2021)
-  const [selectedDate, setSelectedDate] = useState(12)
-  const [selectedTime, setSelectedTime] = useState('09:00 AM')
+  const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth() + 1)
+  const [selectedYear, setSelectedYear] = useState(new Date().getFullYear())
+  const [selectedDate, setSelectedDate] = useState(new Date().getDate())
+  const [selectedTime, setSelectedTime] = useState('')
   const [selectedService, setSelectedService] = useState('')
 
   return (

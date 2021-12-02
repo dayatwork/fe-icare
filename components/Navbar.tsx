@@ -22,6 +22,7 @@ export const Navbar = () => {
 
   const handleLogout = () => {
     destroyCookie({}, 'accessToken')
+    destroyCookie({}, 'user')
     setLoggedId(false)
     router.replace('/')
   }
@@ -108,10 +109,17 @@ export const Navbar = () => {
           {loggedIn ? (
             <Menu as="nav" className="relative">
               <Menu.Button className="flex items-center space-x-2">
-                <p className="text-sm mr-4">Zahrina Anwar</p>
+                <div className="flex flex-col items-end mt-0.5">
+                  <p className="text-sm mr-4">
+                    {JSON.parse(cookies.user)?.name}
+                  </p>
+                  <p className="text-xs text-gray-600 mr-4">
+                    {JSON.parse(cookies.user)?.email}
+                  </p>
+                </div>
                 <Image
-                  width={35}
-                  height={35}
+                  width={37}
+                  height={37}
                   className="object-cover rounded-full"
                   src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100"
                   alt="user photo"
