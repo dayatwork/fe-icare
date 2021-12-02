@@ -12,6 +12,7 @@
   "dependencies": {
     "@headlessui/react": "^1.4.2",
     "@heroicons/react": "^1.0.5",
+    "@radix-ui/react-id": "^0.1.1",
     "@radix-ui/react-slider": "^0.1.1",
     "@radix-ui/react-visually-hidden": "^0.1.1",
     "@tailwindcss/aspect-ratio": "^0.3.0",

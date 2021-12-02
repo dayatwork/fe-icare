@@ -7,10 +7,6 @@ module.exports = {
   purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    screens: {
-      tablet: '960px',
-      desktop: '1248px',
-    },
     colors: {
       gray: colors.coolGray,
       red: colors.red,
@@ -25,6 +21,10 @@ module.exports = {
       fontFamily: {
         sans: ['Poppins', ...defaultTheme.fontFamily.sans],
         serif: ['Lora', ...defaultTheme.fontFamily.serif],
+      },
+      screens: {
+        tablet: '960px',
+        desktop: '1248px',
       },
     },
   },

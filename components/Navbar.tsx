@@ -188,6 +188,24 @@ export const Navbar = () => {
                       )}
                     </Menu.Item>
                   </div>
+                  <div>
+                    <Menu.Item
+                      as="li"
+                      className="block whitespace-nowrap py-2 px-4"
+                    >
+                      {({ active }) => (
+                        <Link href="/admin/institution">
+                          <a
+                            className={`block ${
+                              active ? 'text-limeade' : 'text-gray-600'
+                            }`}
+                          >
+                            Admin
+                          </a>
+                        </Link>
+                      )}
+                    </Menu.Item>
+                  </div>
                   <Menu.Item
                     as="li"
                     className="block whitespace-nowrap py-2 px-4"

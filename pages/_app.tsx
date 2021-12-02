@@ -1,6 +1,7 @@
 import '../styles/globals.css'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import 'react-multi-carousel/lib/styles.css'
+import { IdProvider } from '@radix-ui/react-id'
 
 import type { AppProps } from 'next/app'
 import { ReactNode } from 'react'
@@ -18,10 +19,10 @@ type Props = AppProps & {
 const App = ({ Component, pageProps }: Props) => {
   const getLayout = Component.getLayout ?? ((page: ReactNode) => page)
   return getLayout(
-    <>
+    <IdProvider>
       <Component {...pageProps} />
       <Toaster />
-    </>
+    </IdProvider>
   )
 }
 export default App
