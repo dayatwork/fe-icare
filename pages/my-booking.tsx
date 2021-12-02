@@ -30,7 +30,7 @@ export default function MyBooking() {
     }
   }, [cookies.accessToken, router])
 
-  if (!cookies.accessToken) return null
+  if (!cookies.accessToken) return <div></div>
 
   const tabs = ['To Pay', 'Upcoming', 'Completed', 'Cancelled']
 

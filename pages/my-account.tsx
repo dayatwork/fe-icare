@@ -22,7 +22,7 @@ export default function MyAccount() {
     }
   }, [cookies.accessToken, router])
 
-  if (!cookies.accessToken) return null
+  if (!cookies.accessToken) return <div></div>
 
   return (
     <div className="bg-white">

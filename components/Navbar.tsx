@@ -128,39 +128,66 @@ export const Navbar = () => {
               >
                 <Menu.Items
                   as="ul"
-                  className="absolute right-0 origin-top-right shadow-lg flex flex-col p-4 z-10 border-gray-400 border-1 mt-2 bg-gray-50"
+                  className="absolute right-0 origin-top-right shadow-lg flex flex-col z-10 border-gray-400 border-1 mt-2 bg-gray-50 divide-y divide-gray-200"
                 >
-                  <Menu.Item as="li" className="block whitespace-nowrap p-1">
-                    {({ active }) => (
-                      <Link href="/my-account">
-                        <a
-                          className={`block ${
-                            active ? 'text-limeade' : 'text-gray-600'
-                          }`}
-                        >
-                          My Account
-                        </a>
-                      </Link>
-                    )}
-                  </Menu.Item>
-                  <Menu.Item as="li" className="block whitespace-nowrap p-1">
-                    {({ active }) => (
-                      <Link href="/my-booking">
-                        <a
-                          className={`block ${
-                            active ? 'text-limeade' : 'text-gray-600'
-                          }`}
-                        >
-                          My Booking
-                        </a>
-                      </Link>
-                    )}
-                  </Menu.Item>
-                  <Menu.Item as="li" className="block whitespace-nowrap p-1">
+                  <div>
+                    <Menu.Item
+                      as="li"
+                      className="block whitespace-nowrap py-2 px-4"
+                    >
+                      {({ active }) => (
+                        <Link href="/register-institution">
+                          <a
+                            className={`block ${
+                              active ? 'text-limeade' : 'text-gray-600'
+                            }`}
+                          >
+                            Register Institution
+                          </a>
+                        </Link>
+                      )}
+                    </Menu.Item>
+                    <Menu.Item
+                      as="li"
+                      className="block whitespace-nowrap py-2 px-4"
+                    >
+                      {({ active }) => (
+                        <Link href="/my-account">
+                          <a
+                            className={`block ${
+                              active ? 'text-limeade' : 'text-gray-600'
+                            }`}
+                          >
+                            My Account
+                          </a>
+                        </Link>
+                      )}
+                    </Menu.Item>
+                    <Menu.Item
+                      as="li"
+                      className="block whitespace-nowrap py-2 px-4"
+                    >
+                      {({ active }) => (
+                        <Link href="/my-booking">
+                          <a
+                            className={`block ${
+                              active ? 'text-limeade' : 'text-gray-600'
+                            }`}
+                          >
+                            My Booking
+                          </a>
+                        </Link>
+                      )}
+                    </Menu.Item>
+                  </div>
+                  <Menu.Item
+                    as="li"
+                    className="block whitespace-nowrap py-2 px-4"
+                  >
                     {({ active }) => (
                       <button
                         className={`block ${
-                          active ? 'text-limeade' : 'text-gray-600'
+                          active ? 'text-limeade' : 'text-red-600'
                         }`}
                         onClick={handleLogout}
                       >
@@ -198,7 +225,10 @@ export const Navbar = () => {
                 as="ul"
                 className="absolute right-0 origin-top-right shadow-lg flex flex-col p-4 z-10 border-gray-400 border-1 mt-2 bg-gray-50"
               >
-                <Menu.Item as="li" className="block whitespace-nowrap p-1">
+                <Menu.Item
+                  as="li"
+                  className="block whitespace-nowrap py-2 px-4"
+                >
                   {({ active }) => (
                     <span
                       className={`${active ? 'text-limeade' : 'text-gray-600'}`}
@@ -208,7 +238,10 @@ export const Navbar = () => {
                     </span>
                   )}
                 </Menu.Item>
-                <Menu.Item as="li" className="block whitespace-nowrap p-1">
+                <Menu.Item
+                  as="li"
+                  className="block whitespace-nowrap py-2 px-4"
+                >
                   {({ active }) => (
                     <Link href="/member-benefit">
                       <a
@@ -221,7 +254,10 @@ export const Navbar = () => {
                     </Link>
                   )}
                 </Menu.Item>
-                <Menu.Item as="li" className="block whitespace-nowrap p-1">
+                <Menu.Item
+                  as="li"
+                  className="block whitespace-nowrap py-2 px-4"
+                >
                   {({ active }) => (
                     <Link href="/contact">
                       <a
@@ -234,7 +270,10 @@ export const Navbar = () => {
                     </Link>
                   )}
                 </Menu.Item>
-                <Menu.Item as="li" className="block whitespace-nowrap p-1">
+                <Menu.Item
+                  as="li"
+                  className="block whitespace-nowrap py-2 px-4"
+                >
                   {({ active }) => (
                     <Link href="/about">
                       <a
