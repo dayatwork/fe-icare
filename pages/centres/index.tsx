@@ -35,12 +35,71 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
+const categories = [
+  { id: 'Spa', name: 'Spa' },
+  { id: 'Beauty Salon', name: 'Beauty Salon' },
+]
+
+const ratings = [5, 4, 3, 2, 1]
+
 export default function Centres() {
   // const [priceRange, setPriceRange] = useState([0, 500])
   const [sortBy, setSortBy] = useState(sortingParameters[3])
-  const { data } = useSWR<Centre[]>(() => `/api/centres`, fetcher)
+  const { data: fetchedData } = useSWR<Centre[]>(() => `/api/centres`, fetcher)
+  const [selectedCategory, setSelectedCategory] = useState<
+    Record<string, boolean>
+  >({
+    ['Spa']: false,
+    ['Beauty Salon']: false,
+  })
+  const [selectedRatings, setSelectedRatings] = useState<
+    Record<string, boolean>
+  >({
+    1: false,
+    2: false,
+    3: false,
+    4: false,
+    5: false,
+  })
 
-  console.log({ data })
+  const filterCategories = Object.keys(selectedCategory)
+    .filter((k) => selectedCategory[k])
+    .map((k) => k)
+
+  const filterRatings = Object.keys(selectedRatings)
+    .filter((k) => selectedRatings[k])
+    .map((k) => Number(k))
+
+  const data = fetchedData
+    ?.filter((service) => {
+      if (filterCategories.length) {
+        return service.category.some((category) =>
+          filterCategories.includes(category)
+        )
+      }
+      return true
+    })
+    ?.filter((service) => {
+      if (filterRatings.length) {
+        return filterRatings.includes(service?.rating)
+      }
+      return true
+    })
+    .sort((a, b) => {
+      // if (sortBy.id === 1) {
+      //   return b.price - a.price
+      // }
+      // if (sortBy.id === 2) {
+      //   return a.price - b.price
+      // }
+      if (sortBy.id === 3) {
+        return b.rating - a.rating
+      }
+      if (sortBy.id === 4) {
+        return b.ratedBy - a.ratedBy
+      }
+      return 0
+    })
   return (
     <>
       {/* Search Area */}
@@ -95,8 +154,71 @@ export default function Centres() {
         <div className="w-64">
           <h3 className="font-semibold mb-5">Filter</h3>
           <div className="bg-white rounded-lg shadow-xl px-4 pt-4 pb-6">
-            {/* Facilities */}
+            {/* Category */}
             <fieldset className="space-y-3">
+              <legend className="text-sm font-semibold">Category</legend>
+              {categories.map((category) => (
+                <div key={category.id} className="relative flex items-start">
+                  <div className="flex items-center h-5">
+                    <input
+                      id={category.id}
+                      aria-describedby={`${category.id}-description`}
+                      name={category.id}
+                      type="checkbox"
+                      // value={selectedCategory[category.id]}
+
+                      onChange={(e) =>
+                        setSelectedCategory((prev) => ({
+                          ...prev,
+                          [category.id]: e.target.checked,
+                        }))
+                      }
+                      // value={category.id}
+                      className="form-checkbox focus:ring-limeade h-4 w-4 text-limeade border-gray-300 rounded"
+                    />
+                  </div>
+                  <div className="ml-3 text-sm">
+                    <label
+                      htmlFor={category.id}
+                      className="font-medium text-gray-700"
+                    >
+                      {category.name}
+                    </label>
+                    <span
+                      id={`${category.id}-description`}
+                      className="text-gray-500"
+                    >
+                      <span className="sr-only">{category.name}</span>
+                    </span>
+                  </div>
+                </div>
+              ))}
+              {/* <div className="relative flex items-start">
+                <div className="flex items-center h-5">
+                  <input
+                    id="beauty-salon"
+                    aria-describedby="beauty-salon-description"
+                    name="beauty-salon"
+                    type="checkbox"
+                    value="Beauty Salon"
+                    className="form-checkbox focus:ring-limeade h-4 w-4 text-limeade border-gray-300 rounded"
+                  />
+                </div>
+                <div className="ml-3 text-sm">
+                  <label
+                    htmlFor="beauty-salon"
+                    className="font-medium text-gray-700"
+                  >
+                    Beauty Salon
+                  </label>
+                  <span id="beauty-salon-description" className="text-gray-500">
+                    <span className="sr-only">Beauty Salon</span>
+                  </span>
+                </div>
+              </div> */}
+            </fieldset>
+            {/* Facilities */}
+            <fieldset className="mt-6 space-y-3">
               <legend className="text-sm font-semibold">Facilities</legend>
               <div className="relative flex items-start">
                 <div className="flex items-center h-5">
@@ -316,126 +438,40 @@ export default function Centres() {
             {/* Rating */}
             <fieldset className="mt-6 space-y-3">
               <legend className="text-sm font-semibold">Rating</legend>
-              <div className="relative flex items-start">
-                <div className="flex items-center h-5">
-                  <input
-                    id="5-star"
-                    aria-describedby="5-star-description"
-                    name="5-star"
-                    type="checkbox"
-                    className="form-checkbox focus:ring-limeade h-4 w-4 text-limeade border-gray-300 rounded"
-                  />
-                </div>
-                <div className="ml-3 text-sm">
-                  <label htmlFor="5-star" className="sr-only">
-                    5 star
-                  </label>
-                  <div className="flex items-center">
-                    <StarIcon className="w-5 h-5 text-gold" />
-                    <StarIcon className="w-5 h-5 text-gold" />
-                    <StarIcon className="w-5 h-5 text-gold" />
-                    <StarIcon className="w-5 h-5 text-gold" />
-                    <StarIcon className="w-5 h-5 text-gold" />
+              {ratings?.map((rating) => (
+                <div key={rating} className="relative flex items-start">
+                  <div className="flex items-center h-5">
+                    <input
+                      id={`${rating}-star`}
+                      aria-describedby="5-star-description"
+                      name={`${rating}-star`}
+                      type="checkbox"
+                      className="form-checkbox focus:ring-limeade h-4 w-4 text-limeade border-gray-300 rounded"
+                      onChange={(e) =>
+                        setSelectedRatings((prev) => ({
+                          ...prev,
+                          [rating]: e.target.checked,
+                        }))
+                      }
+                    />
                   </div>
-                  <span id="5-star-description" className="text-gray-500">
-                    <span className="sr-only">5 Star Rating</span>
-                  </span>
-                </div>
-              </div>
-              <div className="relative flex items-start">
-                <div className="flex items-center h-5">
-                  <input
-                    id="4-star"
-                    aria-describedby="4-star-description"
-                    name="4-star"
-                    type="checkbox"
-                    className="form-checkbox focus:ring-limeade h-4 w-4 text-limeade border-gray-300 rounded"
-                  />
-                </div>
-                <div className="ml-3 text-sm">
-                  <label htmlFor="4-star" className="sr-only">
-                    4 star
-                  </label>
-                  <div className="flex items-center">
-                    <StarIcon className="w-5 h-5 text-gold" />
-                    <StarIcon className="w-5 h-5 text-gold" />
-                    <StarIcon className="w-5 h-5 text-gold" />
-                    <StarIcon className="w-5 h-5 text-gold" />
+                  <div className="ml-3 text-sm">
+                    <label htmlFor={`${rating}-star`} className="sr-only">
+                      {rating} star
+                    </label>
+                    <div className="flex items-center">
+                      {Array.from({ length: rating }, (_, i) => i + 1).map(
+                        (i) => (
+                          <StarIcon key={i} className="w-4 h-4 text-gold" />
+                        )
+                      )}
+                    </div>
+                    <span id="5-star-description" className="text-gray-500">
+                      <span className="sr-only">{rating} Star Rating</span>
+                    </span>
                   </div>
-                  <span id="4-star-description" className="text-gray-500">
-                    <span className="sr-only">4 Star Rating</span>
-                  </span>
                 </div>
-              </div>
-              <div className="relative flex items-start">
-                <div className="flex items-center h-5">
-                  <input
-                    id="3-star"
-                    aria-describedby="3-star-description"
-                    name="3-star"
-                    type="checkbox"
-                    className="form-checkbox focus:ring-limeade h-4 w-4 text-limeade border-gray-300 rounded"
-                  />
-                </div>
-                <div className="ml-3 text-sm">
-                  <label htmlFor="3-star" className="sr-only">
-                    3 star
-                  </label>
-                  <div className="flex items-center">
-                    <StarIcon className="w-5 h-5 text-gold" />
-                    <StarIcon className="w-5 h-5 text-gold" />
-                    <StarIcon className="w-5 h-5 text-gold" />
-                  </div>
-                  <span id="3-star-description" className="text-gray-500">
-                    <span className="sr-only">3 Star Rating</span>
-                  </span>
-                </div>
-              </div>
-              <div className="relative flex items-start">
-                <div className="flex items-center h-5">
-                  <input
-                    id="2-star"
-                    aria-describedby="2-star-description"
-                    name="2-star"
-                    type="checkbox"
-                    className="form-checkbox focus:ring-limeade h-4 w-4 text-limeade border-gray-300 rounded"
-                  />
-                </div>
-                <div className="ml-3 text-sm">
-                  <label htmlFor="2-star" className="sr-only">
-                    2 star
-                  </label>
-                  <div className="flex items-center">
-                    <StarIcon className="w-5 h-5 text-gold" />
-                    <StarIcon className="w-5 h-5 text-gold" />
-                  </div>
-                  <span id="2-star-description" className="text-gray-500">
-                    <span className="sr-only">2 Star Rating</span>
-                  </span>
-                </div>
-              </div>
-              <div className="relative flex items-start">
-                <div className="flex items-center h-5">
-                  <input
-                    id="1-star"
-                    aria-describedby="1-star-description"
-                    name="1-star"
-                    type="checkbox"
-                    className="form-checkbox focus:ring-limeade h-4 w-4 text-limeade border-gray-300 rounded"
-                  />
-                </div>
-                <div className="ml-3 text-sm">
-                  <label htmlFor="1-star" className="sr-only">
-                    1 star
-                  </label>
-                  <div className="flex items-center">
-                    <StarIcon className="w-5 h-5 text-gold" />
-                  </div>
-                  <span id="1-star-description" className="text-gray-500">
-                    <span className="sr-only">1 Star Rating</span>
-                  </span>
-                </div>
-              </div>
+              ))}
             </fieldset>
           </div>
         </div>
@@ -527,9 +563,15 @@ export default function Centres() {
             </div>
           </div>
           <div className="grid grid-cols-3 gap-4">
-            {data?.map((centre) => (
-              <CentreCard centre={centre} key={centre.id} />
-            ))}
+            {data?.length ? (
+              data?.map((centre) => (
+                <CentreCard centre={centre} key={centre.id} />
+              ))
+            ) : (
+              <p className="text-limeade font-semibold text-lg text-center col-span-4 py-20">
+                No Result
+              </p>
+            )}
           </div>
         </div>
       </div>
