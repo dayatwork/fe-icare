@@ -24,7 +24,8 @@
     "react-hot-toast": "^2.1.1",
     "react-multi-carousel": "^2.6.5",
     "react-otp-input": "^2.4.0",
-    "react-responsive-carousel": "^3.2.22"
+    "react-responsive-carousel": "^3.2.22",
+    "swr": "^1.1.0"
   },
   "devDependencies": {
     "@types/react": "17.0.34",

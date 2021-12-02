@@ -5,9 +5,12 @@ import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 import Image from 'next/image'
 import { SearchIcon, StarIcon } from '@heroicons/react/solid'
-import * as Slider from '@radix-ui/react-slider'
+// import * as Slider from '@radix-ui/react-slider'
+import useSWR from 'swr'
 
 import Layout from '@/components/Layout'
+import { Centre } from 'mock-data'
+import { fetcher } from 'utils'
 
 const sortingParameters = [
   {
@@ -33,8 +36,11 @@ function classNames(...classes: string[]) {
 }
 
 export default function Centres() {
-  const [priceRange, setPriceRange] = useState([0, 500])
+  // const [priceRange, setPriceRange] = useState([0, 500])
   const [sortBy, setSortBy] = useState(sortingParameters[3])
+  const { data } = useSWR<Centre[]>(() => `/api/centres`, fetcher)
+
+  console.log({ data })
   return (
     <>
       {/* Search Area */}
@@ -240,7 +246,7 @@ export default function Centres() {
             </fieldset>
 
             {/* Price Range */}
-            <fieldset className="mt-6 space-y-3">
+            {/* <fieldset className="mt-6 space-y-3">
               <legend className="text-sm font-semibold">Price Range</legend>
               <Slider.Root
                 // defaultValue={[0, 500]}
@@ -305,7 +311,7 @@ export default function Centres() {
                   />
                 </div>
               </div>
-            </fieldset>
+            </fieldset> */}
 
             {/* Rating */}
             <fieldset className="mt-6 space-y-3">
@@ -521,18 +527,9 @@ export default function Centres() {
             </div>
           </div>
           <div className="grid grid-cols-3 gap-4">
-            <CentreCard />
-            <CentreCard />
-            <CentreCard />
-            <CentreCard />
-            <CentreCard />
-            <CentreCard />
-            <CentreCard />
-            <CentreCard />
-            <CentreCard />
-            <CentreCard />
-            <CentreCard />
-            <CentreCard />
+            {data?.map((centre) => (
+              <CentreCard centre={centre} key={centre.id} />
+            ))}
           </div>
         </div>
       </div>
@@ -540,17 +537,17 @@ export default function Centres() {
   )
 }
 
-const CentreCard = () => {
+const CentreCard = ({ centre }: { centre: Centre }) => {
+  const { id, category, name, location, rating } = centre
   return (
     <div className="p-4 rounded-xl shadow-md bg-white">
       {/* Rating */}
       <div className="flex justify-end mb-3">
         <div className="flex items-center space-x-2">
           <div className="flex items-center">
-            <StarIcon className="w-4 h-4 text-gold" />
-            <StarIcon className="w-4 h-4 text-gold" />
-            <StarIcon className="w-4 h-4 text-gold" />
-            <StarIcon className="w-4 h-4 text-gold" />
+            {Array.from({ length: rating }, (_, i) => i + 1).map((i) => (
+              <StarIcon key={i} className="w-4 h-4 text-gold" />
+            ))}
           </div>
         </div>
       </div>
@@ -562,12 +559,12 @@ const CentreCard = () => {
           // className="object-cover"
         />
       </div>
-      <h3 className="mt-2 font-semibold text-lg">Vidiana Spa</h3>
-      <p className="text-xs text-gray-500">Beauty Centre</p>
-      <div className="flex items-center justify-between mt-3">
-        <p className="text-sm text-limeade">Taman University (5km)</p>
-        <Link href="/centres/123">
-          <a className="text-sm py-1 px-2 rounded-md bg-limeade text-white hover:bg-verdun-green">
+      <h3 className="mt-2 font-semibold text-lg">{name}</h3>
+      <p className="text-xs text-gray-500">{category.join(', ')}</p>
+      <div className="flex justify-between items-start mt-3">
+        <p className="text-sm text-limeade">{location}</p>
+        <Link href={`/centres/${id}`}>
+          <a className="text-sm py-1 px-2 rounded-md bg-limeade text-white hover:bg-verdun-green whitespace-nowrap">
             Learn More
           </a>
         </Link>

@@ -4,11 +4,18 @@ import { Carousel } from 'react-responsive-carousel'
 import { StarIcon } from '@heroicons/react/solid'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
+import useSWR from 'swr'
 
 import Layout from '@/components/Layout'
+import { Service } from 'mock-data'
+import { fetcher } from 'utils'
 
 export default function Services() {
   const router = useRouter()
+  const { data } = useSWR<Service>(
+    () => router.query.slug && `/api/services/${router.query.slug}`,
+    fetcher
+  )
 
   return (
     <div className="max-w-7xl mx-auto px-4">
@@ -69,23 +76,25 @@ export default function Services() {
         {/* Right */}
         <div>
           <div className="bg-white shadow-md rounded-md p-6 mb-6">
-            <h3 className="font-semibold text-xl">
-              1-Hour full Body Massage Yeo Beuty & Spa
-            </h3>
+            <h3 className="font-semibold text-xl">{data?.name}</h3>
             <p className="space-x-2 mt-4">
-              <span className="text-lg text-gray-500 line-through">RM868</span>
-              <span className="text-xl text-limeade font-semibold">RM268</span>
+              <span className="text-lg text-gray-500 line-through">
+                RM{data?.originalPrice}
+              </span>
+              <span className="text-xl text-limeade font-semibold">
+                RM{data?.price}
+              </span>
             </p>
             <div className="flex items-center space-x-2 mt-2">
               <div className="flex items-center">
-                <StarIcon className="w-4 h-4 text-gold" />
-                <StarIcon className="w-4 h-4 text-gold" />
-                <StarIcon className="w-4 h-4 text-gold" />
-                <StarIcon className="w-4 h-4 text-gold" />
+                {data?.rating &&
+                  Array.from({ length: data?.rating }, (_, i) => i + 1).map(
+                    (i) => <StarIcon key={i} className="w-4 h-4 text-gold" />
+                  )}
               </div>
-              <p className="text-sm">58 Rated</p>
+              <p className="text-sm">{data?.ratedBy} Rated</p>
             </div>
-            <p className="text-xs text-gray-600 mt-3">Taman University (5km)</p>
+            <p className="text-xs text-gray-600 mt-3">{data?.location}</p>
             <Link href={`/booking/service/${router.query.slug}`}>
               <a className="btn-primary mt-5 w-full block text-center">
                 Book now

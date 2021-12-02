@@ -5,10 +5,13 @@ import { RadioGroup } from '@headlessui/react'
 import { parseCookies } from 'nookies'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { LockClosedIcon } from '@heroicons/react/outline'
+import useSWR from 'swr'
 
 import Layout from '@/components/Layout'
 import { DatePicker } from '@/components/DatePicker'
-import { LockClosedIcon } from '@heroicons/react/outline'
+import { Service } from 'mock-data'
+import { fetcher } from 'utils'
 
 export default function BookingService() {
   const router = useRouter()
@@ -17,6 +20,10 @@ export default function BookingService() {
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear())
   const [selectedDate, setSelectedDate] = useState(new Date().getDate())
   const [selectedTime, setSelectedTime] = useState('')
+  const { data } = useSWR<Service>(
+    () => router.query.slug && `/api/services/${router.query.slug}`,
+    fetcher
+  )
 
   return (
     <div className="max-w-7xl mx-auto px-4">
@@ -125,27 +132,29 @@ export default function BookingService() {
                 className="object-cover w-24 h-20"
               />
               <div className="flex-1">
-                <h3 className="font-semibold text-lg mb-1.5">
-                  1-Hour full Body Massage Yeo Beuty & Spa
-                </h3>
-                <p className="text-gray-500 text-sm mb-2">Vibes Spa</p>
+                <h3 className="font-semibold text-lg mb-1.5">{data?.name}</h3>
+                <p className="text-gray-500 text-sm mb-2">{data?.centerName}</p>
               </div>
             </div>
             <ul>
               <li className="flex justify-between items-center py-3 border-t border-gray-200">
                 <p className="text-gray-500">Price</p>
                 <p>
-                  <span className="text-gray-500 line-through mr-2">RM168</span>
-                  RM68
+                  <span className="text-gray-500 line-through mr-2">
+                    RM{data?.originalPrice}
+                  </span>
+                  {data?.price}
                 </p>
               </li>
               <li className="flex justify-between items-center py-3 border-t border-gray-200">
                 <p className="text-gray-500">Booking Fee</p>
-                <p>RM18</p>
+                <p>RM{data?.bookingPrice}</p>
               </li>
               <li className="flex justify-between items-center py-3 border-t border-gray-200">
                 <p className="font-semibold text-lg">Total Price</p>
-                <p className="font-semibold text-limeade text-xl">RM86</p>
+                <p className="font-semibold text-limeade text-xl">
+                  RM{data && data?.price + data?.bookingPrice}
+                </p>
               </li>
             </ul>
 

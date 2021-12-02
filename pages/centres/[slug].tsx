@@ -5,11 +5,20 @@ import { StarIcon } from '@heroicons/react/solid'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import useSWR from 'swr'
 
 import Layout from '@/components/Layout'
+import { Centre } from 'mock-data'
+import { fetcher } from 'utils'
 
 export default function Centres() {
   const router = useRouter()
+  const { data } = useSWR<Centre>(
+    () => router.query.slug && `/api/centres/${router.query.slug}`,
+    fetcher
+  )
+
+  console.log({ data })
 
   return (
     <div className="max-w-7xl mx-auto px-4">
@@ -81,19 +90,18 @@ export default function Centres() {
                 />
               </div>
               <div className="flex-1">
-                <h3 className="font-semibold text-2xl mb-1">Vidiana Spa</h3>
-                <p className="text-gray-600 text-sm">
-                  Lot 898, Lorong 90, Taman University, Jalan Indah Permai,
-                  Petaling Jaya, Selangor, Malaysia
-                </p>
+                <h3 className="font-semibold text-2xl mb-1">{data?.name}</h3>
+                <p className="text-gray-600 text-sm">{data?.location}</p>
                 <div className="flex items-center space-x-2 mt-2 -ml-1">
                   <div className="flex items-center">
-                    <StarIcon className="w-4 h-4 text-gold" />
-                    <StarIcon className="w-4 h-4 text-gold" />
-                    <StarIcon className="w-4 h-4 text-gold" />
-                    <StarIcon className="w-4 h-4 text-gold" />
+                    {data?.rating &&
+                      Array.from({ length: data?.rating }, (_, i) => i + 1).map(
+                        (i) => (
+                          <StarIcon key={i} className="w-4 h-4 text-gold" />
+                        )
+                      )}
                   </div>
-                  <p className="text-sm text-gray-600">858 Rated</p>
+                  <p className="text-sm text-gray-600">{data?.ratedBy} Rated</p>
                 </div>
               </div>
             </div>

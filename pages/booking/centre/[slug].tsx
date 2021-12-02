@@ -7,10 +7,13 @@ import { StarIcon } from '@heroicons/react/solid'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { parseCookies } from 'nookies'
+import { LockClosedIcon } from '@heroicons/react/outline'
+import useSWR from 'swr'
 
 import Layout from '@/components/Layout'
 import { DatePicker } from '@/components/DatePicker'
-import { LockClosedIcon } from '@heroicons/react/outline'
+import { Service, Centre } from 'mock-data'
+import { fetcher } from 'utils'
 
 export default function BookingCentre() {
   const router = useRouter()
@@ -19,7 +22,16 @@ export default function BookingCentre() {
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear())
   const [selectedDate, setSelectedDate] = useState(new Date().getDate())
   const [selectedTime, setSelectedTime] = useState('')
-  const [selectedService, setSelectedService] = useState('')
+  const [selectedService, setSelectedService] = useState<number>()
+  const { data: centre } = useSWR<Centre>(
+    () => router.query.slug && `/api/centres/${router.query.slug}`,
+    fetcher
+  )
+  const { data: services } = useSWR<Service[]>(() => `/api/services/`, fetcher)
+
+  const selectedServiceDetail = services?.find(
+    (service) => service.id === selectedService
+  )
 
   return (
     <div className="max-w-7xl mx-auto px-4">
@@ -126,78 +138,23 @@ export default function BookingCentre() {
             <RadioGroup value={selectedService} onChange={setSelectedService}>
               <RadioGroup.Label className="sr-only">Service</RadioGroup.Label>
               <div className="grid grid-cols-3 gap-6">
-                <RadioGroup.Option
-                  value="1-Hour full Body Massage Yeo Beuty & Spa #1"
-                  className={({ checked }) =>
-                    `p-4 rounded-xl border shadow border-limeade bg-white cursor-pointer ${
-                      checked
-                        ? 'border-4 bg-[#CBFE5B] bg-opacity-10 shadow-xl outline-none'
-                        : 'border shadow'
-                    }`
-                  }
-                >
-                  <ServiceCard name="1-Hour full Body Massage Yeo Beuty & Spa #1" />
-                </RadioGroup.Option>
-                <RadioGroup.Option
-                  value="1-Hour full Body Massage Yeo Beuty & Spa #2"
-                  className={({ checked }) =>
-                    `p-4 rounded-xl border shadow border-limeade bg-white cursor-pointer ${
-                      checked
-                        ? 'border-4 bg-[#CBFE5B] bg-opacity-10 shadow-xl outline-none'
-                        : 'border shadow'
-                    }`
-                  }
-                >
-                  <ServiceCard name="1-Hour full Body Massage Yeo Beuty & Spa #2" />
-                </RadioGroup.Option>
-                <RadioGroup.Option
-                  value="1-Hour full Body Massage Yeo Beuty & Spa #3"
-                  className={({ checked }) =>
-                    `p-4 rounded-xl border shadow border-limeade bg-white cursor-pointer ${
-                      checked
-                        ? 'border-4 bg-[#CBFE5B] bg-opacity-10 shadow-xl outline-none'
-                        : 'border shadow'
-                    }`
-                  }
-                >
-                  <ServiceCard name="1-Hour full Body Massage Yeo Beuty & Spa #3" />
-                </RadioGroup.Option>
-                <RadioGroup.Option
-                  value="1-Hour full Body Massage Yeo Beuty & Spa #4"
-                  className={({ checked }) =>
-                    `p-4 rounded-xl border shadow border-limeade bg-white cursor-pointer ${
-                      checked
-                        ? 'border-4 bg-[#CBFE5B] bg-opacity-10 shadow-xl outline-none'
-                        : 'border shadow'
-                    }`
-                  }
-                >
-                  <ServiceCard name="1-Hour full Body Massage Yeo Beuty & Spa #4" />
-                </RadioGroup.Option>
-                <RadioGroup.Option
-                  value="1-Hour full Body Massage Yeo Beuty & Spa #5"
-                  className={({ checked }) =>
-                    `p-4 rounded-xl border shadow border-limeade bg-white cursor-pointer ${
-                      checked
-                        ? 'border-4 bg-[#CBFE5B] bg-opacity-10 shadow-xl outline-none'
-                        : 'border shadow'
-                    }`
-                  }
-                >
-                  <ServiceCard name="1-Hour full Body Massage Yeo Beuty & Spa #5" />
-                </RadioGroup.Option>
-                <RadioGroup.Option
-                  value="1-Hour full Body Massage Yeo Beuty & Spa #6"
-                  className={({ checked }) =>
-                    `p-4 rounded-xl border shadow border-limeade bg-white cursor-pointer ${
-                      checked
-                        ? 'border-4 bg-[#CBFE5B] bg-opacity-10 shadow-xl outline-none'
-                        : 'border shadow'
-                    }`
-                  }
-                >
-                  <ServiceCard name="1-Hour full Body Massage Yeo Beuty & Spa #6" />
-                </RadioGroup.Option>
+                {services
+                  ?.filter((service) => service.centerId === centre?.id)
+                  .map((service) => (
+                    <RadioGroup.Option
+                      key={service.id}
+                      value={service.id}
+                      className={({ checked }) =>
+                        `p-4 rounded-xl border shadow border-limeade bg-white cursor-pointer ${
+                          checked
+                            ? 'border-4 bg-[#CBFE5B] bg-opacity-10 shadow-xl outline-none'
+                            : 'border shadow'
+                        }`
+                      }
+                    >
+                      <ServiceCard service={service} />
+                    </RadioGroup.Option>
+                  ))}
               </div>
             </RadioGroup>
           </div>
@@ -215,21 +172,18 @@ export default function BookingCentre() {
               <div className="flex-1">
                 {selectedService ? (
                   <h3 className="font-semibold text-lg mb-1.5">
-                    {selectedService}
+                    {selectedServiceDetail?.name}
                   </h3>
                 ) : (
                   <p className="text-lg bg-limeade bg-opacity-20 text-center mb-2 py-1 text-verdun-green">
                     Please select service
                   </p>
                 )}
-                <p className="text-gray-500 text-sm mb-2">Vibes Spa</p>
+                <p className="text-gray-500 text-sm mb-2">{centre?.name}</p>
               </div>
             </div>
-            <p className="text-sm mb-2">
-              No 123, Jalan University, Johor Bahru, Malaysia Thursday, 07 Oct
-              2021
-            </p>
-            <p className="text-sm mb-4">Therapist : Miss Lin Yuan</p>
+            <p className="text-sm mb-2">{centre?.location}</p>
+            {/* <p className="text-sm mb-4">Therapist : Miss Lin Yuan</p> */}
             {selectedService ? (
               <>
                 <ul>
@@ -237,18 +191,23 @@ export default function BookingCentre() {
                     <p className="text-gray-500">Price</p>
                     <p>
                       <span className="text-gray-500 line-through mr-2">
-                        RM168
+                        RM{selectedServiceDetail?.originalPrice}
                       </span>
-                      RM68
+                      RM{selectedServiceDetail?.price}
                     </p>
                   </li>
                   <li className="flex justify-between items-center py-3 border-t border-gray-200">
                     <p className="text-gray-500">Booking Fee</p>
-                    <p>RM18</p>
+                    <p>RM{selectedServiceDetail?.bookingPrice}</p>
                   </li>
                   <li className="flex justify-between items-center py-3 border-t border-gray-200">
                     <p className="font-semibold text-lg">Total Price</p>
-                    <p className="font-semibold text-limeade text-xl">RM86</p>
+                    <p className="font-semibold text-limeade text-xl">
+                      RM
+                      {selectedServiceDetail &&
+                        selectedServiceDetail.price +
+                          selectedServiceDetail.bookingPrice}
+                    </p>
                   </li>
                 </ul>
 
@@ -273,19 +232,19 @@ export default function BookingCentre() {
   )
 }
 
-const ServiceCard = ({ name }: { name: string }) => {
+const ServiceCard = ({ service }: { service: Service }) => {
   return (
     <div>
       {/* Rating */}
       <div className="flex justify-end mb-3">
         <div className="flex items-center space-x-2">
           <div className="flex items-center">
-            <StarIcon className="w-4 h-4 text-gold" />
-            <StarIcon className="w-4 h-4 text-gold" />
-            <StarIcon className="w-4 h-4 text-gold" />
-            <StarIcon className="w-4 h-4 text-gold" />
+            {service?.rating &&
+              Array.from({ length: service?.rating }, (_, i) => i + 1).map(
+                (i) => <StarIcon key={i} className="w-4 h-4 text-gold" />
+              )}
           </div>
-          <p className="text-sm">58 Rated</p>
+          <p className="text-sm">{service?.ratedBy} Rated</p>
         </div>
       </div>
       <div className="aspect-w-3 aspect-h-2">
@@ -296,10 +255,14 @@ const ServiceCard = ({ name }: { name: string }) => {
           // className="object-cover"
         />
       </div>
-      <h3 className="mt-2 font-semibold text-lg">{name}</h3>
+      <h3 className="mt-2 font-semibold text-lg">{service?.name}</h3>
       <p className="space-x-2 mt-6">
-        <span className="text-lg text-gray-500 line-through">RM868</span>
-        <span className="text-lg text-limeade font-semibold">RM268</span>
+        <span className="text-lg text-gray-500 line-through">
+          RM{service?.originalPrice}
+        </span>
+        <span className="text-lg text-limeade font-semibold">
+          RM{service?.price}
+        </span>
       </p>
     </div>
   )

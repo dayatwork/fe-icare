@@ -488,31 +488,6 @@ export default function Home() {
               </p>
             </div>
           </div>
-          <div className="shadow-md bg-white relative m-6">
-            <div className="aspect-w-2 aspect-h-3">
-              <Image
-                src="/images/service-4.png"
-                alt="promotion 4"
-                layout="fill"
-                className="object-cover filter hover:brightness-50 transition"
-              />
-            </div>
-            <div className="absolute bottom-0 p-6 text-white">
-              <h3
-                className="mt-2 font-semibold text-3xl text-white"
-                style={{ textShadow: '2px 2px 4px rgba(0,0,0, 0.5)' }}
-              >
-                Yoga Class
-              </h3>
-
-              <p
-                className="text-white mt-3 text-lg"
-                style={{ textShadow: '2px 2px 4px rgba(0,0,0, 0.5)' }}
-              >
-                Regulate the metabolism in a healthy and lasting way
-              </p>
-            </div>
-          </div>
         </MultiCarousel>
       </section>
 
@@ -530,8 +505,10 @@ export default function Home() {
                 width={100}
                 height={100}
               />
-              <div className="text-lg text-limeade font-bold">Best</div>
-              <p className="text-xl text-center">
+              <div className="text-lg text-limeade font-bold max-w-[200px] text-center">
+                Best new norm adaptability
+              </div>
+              <p className="text-center">
                 We provides integrated hardware with software system for FREE
                 covid-19 assessment to ensure safe environment for both customer
                 and staff.
@@ -546,8 +523,10 @@ export default function Home() {
                 width={100}
                 height={100}
               />
-              <div className="text-lg text-limeade font-bold">Use</div>
-              <p className="text-xl text-center">
+              <div className="text-lg text-limeade font-bold max-w-[200px] text-center">
+                User convenience & privacy
+              </div>
+              <p className="text-center">
                 Attractive and user friendly UI/UX to excellent experience with
                 user privacy protected.
               </p>
@@ -561,11 +540,13 @@ export default function Home() {
                 width={100}
                 height={100}
               />
-              <div className="text-lg text-limeade font-bold">Seaml</div>
-              <p className="text-xl text-center">
-                Able to track therapist, track booking history, book favourite
-                merchant and therapist, live in-app chat function and many more
-                features.
+              <div className="text-lg text-limeade font-bold max-w-[200px] text-center">
+                Ai guided mobile application
+              </div>
+              <p className="text-center">
+                An automated or manual mobile apps using option. Automated
+                option ease the user experience in mobile apps where all class
+                of people can use it without any prior experience.
               </p>
             </div>
           </div>

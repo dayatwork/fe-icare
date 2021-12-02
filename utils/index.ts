@@ -11,3 +11,13 @@ export const getDaysInMonth = function ({
   // Here January is 0 based
   // return new Date(year, month+1, 0).getDate();
 }
+
+export const fetcher = async (url: string) => {
+  const res = await fetch(url)
+  const data = await res.json()
+
+  if (res.status !== 200) {
+    throw new Error(data.message)
+  }
+  return data
+}
