@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from 'react'
+import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { RadioGroup, Popover } from '@headlessui/react'
 import {
   ChevronLeftIcon,
@@ -6,14 +6,32 @@ import {
   ChevronDownIcon,
 } from '@heroicons/react/outline'
 
+import { getDaysInMonth } from 'utils'
+
 type Props = {
-  selectedMonth: string
-  setSelectedMonth: Dispatch<SetStateAction<string>>
+  selectedMonth: number
+  setSelectedMonth: Dispatch<SetStateAction<number>>
   selectedYear: number
   setSelectedYear: Dispatch<SetStateAction<number>>
   selectedDate: number
   setSelectedDate: Dispatch<SetStateAction<number>>
 }
+
+const months = [
+  '',
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+]
 
 export const DatePicker = ({
   selectedDate,
@@ -23,11 +41,27 @@ export const DatePicker = ({
   selectedYear,
   setSelectedYear,
 }: Props) => {
+  const [days, setDays] = useState(30)
+
+  useEffect(() => {
+    const days = getDaysInMonth({
+      month: Number(selectedMonth),
+      year: selectedYear,
+    })
+    if (days) {
+      setDays(days)
+    }
+  }, [selectedMonth, selectedYear])
+
+  console.log({ days })
+
   return (
     <div>
       <Popover className="relative flex justify-center mb-4">
         <Popover.Button className="hover:bg-gray-300 px-4 py-2 flex space-x-2 items-center rounded-md text-xl font-semibold">
-          <span>{`${selectedMonth} ${selectedDate}, ${selectedYear}`}</span>
+          <span>{`${
+            months[Number(selectedMonth)]
+          } ${selectedDate}, ${selectedYear}`}</span>
           <ChevronDownIcon className="w-5 h-5" />
         </Popover.Button>
 
@@ -63,7 +97,7 @@ export const DatePicker = ({
               Select Month
             </RadioGroup.Label>
             <div className="grid grid-cols-3 gap-2">
-              <RadioGroup.Option value="January">
+              <RadioGroup.Option value={1}>
                 {({ checked }) => (
                   <span
                     className={`text-center block py-2.5 px-2 rounded-md cursor-pointer ${
@@ -74,7 +108,7 @@ export const DatePicker = ({
                   </span>
                 )}
               </RadioGroup.Option>
-              <RadioGroup.Option value="February">
+              <RadioGroup.Option value={2}>
                 {({ checked }) => (
                   <span
                     className={`text-center block py-2.5 px-2 rounded-md cursor-pointer ${
@@ -85,7 +119,7 @@ export const DatePicker = ({
                   </span>
                 )}
               </RadioGroup.Option>
-              <RadioGroup.Option value="March">
+              <RadioGroup.Option value={3}>
                 {({ checked }) => (
                   <span
                     className={`text-center block py-2.5 px-2 rounded-md cursor-pointer ${
@@ -96,7 +130,7 @@ export const DatePicker = ({
                   </span>
                 )}
               </RadioGroup.Option>
-              <RadioGroup.Option value="April">
+              <RadioGroup.Option value={4}>
                 {({ checked }) => (
                   <span
                     className={`text-center block py-2.5 px-2 rounded-md cursor-pointer ${
@@ -107,7 +141,7 @@ export const DatePicker = ({
                   </span>
                 )}
               </RadioGroup.Option>
-              <RadioGroup.Option value="May">
+              <RadioGroup.Option value={5}>
                 {({ checked }) => (
                   <span
                     className={`text-center block py-2.5 px-2 rounded-md cursor-pointer ${
@@ -118,7 +152,7 @@ export const DatePicker = ({
                   </span>
                 )}
               </RadioGroup.Option>
-              <RadioGroup.Option value="June">
+              <RadioGroup.Option value={6}>
                 {({ checked }) => (
                   <span
                     className={`text-center block py-2.5 px-2 rounded-md cursor-pointer ${
@@ -129,7 +163,7 @@ export const DatePicker = ({
                   </span>
                 )}
               </RadioGroup.Option>
-              <RadioGroup.Option value="July">
+              <RadioGroup.Option value={7}>
                 {({ checked }) => (
                   <span
                     className={`text-center block py-2.5 px-2 rounded-md cursor-pointer ${
@@ -140,7 +174,7 @@ export const DatePicker = ({
                   </span>
                 )}
               </RadioGroup.Option>
-              <RadioGroup.Option value="August">
+              <RadioGroup.Option value={8}>
                 {({ checked }) => (
                   <span
                     className={`text-center block py-2.5 px-2 rounded-md cursor-pointer ${
@@ -151,7 +185,7 @@ export const DatePicker = ({
                   </span>
                 )}
               </RadioGroup.Option>
-              <RadioGroup.Option value="September">
+              <RadioGroup.Option value={9}>
                 {({ checked }) => (
                   <span
                     className={`text-center block py-2.5 px-2 rounded-md cursor-pointer ${
@@ -162,7 +196,7 @@ export const DatePicker = ({
                   </span>
                 )}
               </RadioGroup.Option>
-              <RadioGroup.Option value="October">
+              <RadioGroup.Option value={10}>
                 {({ checked }) => (
                   <span
                     className={`text-center block py-2.5 px-2 rounded-md cursor-pointer ${
@@ -173,7 +207,7 @@ export const DatePicker = ({
                   </span>
                 )}
               </RadioGroup.Option>
-              <RadioGroup.Option value="November">
+              <RadioGroup.Option value={11}>
                 {({ checked }) => (
                   <span
                     className={`text-center block py-2.5 px-2 rounded-md cursor-pointer ${
@@ -184,7 +218,7 @@ export const DatePicker = ({
                   </span>
                 )}
               </RadioGroup.Option>
-              <RadioGroup.Option value="December">
+              <RadioGroup.Option value={12}>
                 {({ checked }) => (
                   <span
                     className={`text-center block py-2.5 px-2 rounded-md cursor-pointer ${
@@ -207,7 +241,7 @@ export const DatePicker = ({
       >
         <RadioGroup.Label className="sr-only">Select Date</RadioGroup.Label>
 
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16].map((i) => (
+        {Array.from({ length: days }, (_, i) => i + 1).map((i) => (
           <RadioGroup.Option key={i} value={i}>
             {({ checked }) => (
               <span
