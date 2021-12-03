@@ -23,13 +23,16 @@
     "react-dom": "17.0.2",
     "react-fast-marquee": "^1.2.1",
     "react-hot-toast": "^2.1.1",
+    "react-icons": "^4.3.1",
     "react-multi-carousel": "^2.6.5",
     "react-otp-input": "^2.4.0",
     "react-responsive-carousel": "^3.2.22",
+    "react-table": "^7.7.0",
     "swr": "^1.1.0"
   },
   "devDependencies": {
     "@types/react": "17.0.34",
+    "@types/react-table": "^7.7.8",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "autoprefixer": "^10.4.0",
     "eslint": "7.32.0",

@@ -10,6 +10,11 @@ module.exports = {
         destination: '/admin/institution',
         permanent: false,
       },
+      // {
+      //   source: '/my-institution',
+      //   destination: '/my-institution/customers',
+      //   permanent: false,
+      // },
     ]
   },
 }

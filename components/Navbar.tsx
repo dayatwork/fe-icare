@@ -160,6 +160,22 @@ export const Navbar = () => {
                       className="block whitespace-nowrap py-2 px-4"
                     >
                       {({ active }) => (
+                        <Link href="/my-institution/customers">
+                          <a
+                            className={`block ${
+                              active ? 'text-limeade' : 'text-gray-600'
+                            }`}
+                          >
+                            My Institution
+                          </a>
+                        </Link>
+                      )}
+                    </Menu.Item>
+                    <Menu.Item
+                      as="li"
+                      className="block whitespace-nowrap py-2 px-4"
+                    >
+                      {({ active }) => (
                         <Link href="/my-account">
                           <a
                             className={`block ${

@@ -1,6 +1,7 @@
 import '../styles/globals.css'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import 'react-multi-carousel/lib/styles.css'
+import 'regenerator-runtime/runtime'
 import { IdProvider } from '@radix-ui/react-id'
 
 import type { AppProps } from 'next/app'
