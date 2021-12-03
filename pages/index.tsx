@@ -8,7 +8,7 @@ import { StarIcon } from '@heroicons/react/solid'
 import useSWR from 'swr'
 
 import Layout from '@/components/Layout'
-import { Service } from 'mock-data'
+import { Service, News, news } from 'mock-data'
 import { fetcher } from 'utils'
 
 const responsive = {
@@ -100,8 +100,11 @@ const services = [
 
 export default function Home() {
   const { data } = useSWR<Service[]>(() => `/api/services`, fetcher)
+  const { data: dataNews } = useSWR<News[]>(() => `/api/news`, fetcher)
 
   const promotionServices = data?.filter((service) => service.promotion)
+
+  console.log({ dataNews })
 
   return (
     <>
@@ -210,11 +213,13 @@ export default function Home() {
       <section className="max-w-7xl mx-auto px-4 py-6 tablet:py-10 desktop:py-16">
         <h2 className="text-2xl font-semibold mb-6">Promotions</h2>
         {/* <div className="grid grid-cols-4 gap-6"> */}
-        <MultiCarousel responsive={responsive}>
-          {promotionServices?.map((service) => (
-            <ServiceCard key={service.id} service={service} />
-          ))}
-        </MultiCarousel>
+        {promotionServices?.length ? (
+          <MultiCarousel responsive={responsive}>
+            {promotionServices?.map((service) => (
+              <ServiceCard key={service.id} service={service} />
+            ))}
+          </MultiCarousel>
+        ) : null}
 
         {/* </div> */}
       </section>
@@ -222,85 +227,13 @@ export default function Home() {
       {/* Good News */}
       <section className="max-w-7xl mx-auto px-4 py-6 tablet:py-10 desktop:py-16">
         <h2 className="text-2xl font-semibold mb-6">Good News</h2>
-        <MultiCarousel responsive={responsive}>
-          <div className="p-4 rounded-xl shadow-md bg-white mx-2">
-            <div className="aspect-w-3 aspect-h-2">
-              <Image
-                src="/images/good-news-1.png"
-                alt="promotion 1"
-                layout="fill"
-              />
-            </div>
-            <h3 className="mt-2 font-semibold text-lg">
-              Free Mental Health Consultation
-            </h3>
-
-            <p className="text-xs text-gray-600 mt-3">
-              *Term & Conditions Apply
-            </p>
-          </div>
-
-          <div className="p-4 rounded-xl shadow-md bg-white mx-2">
-            <div className="aspect-w-3 aspect-h-2">
-              <Image
-                src="/images/good-news-2.png"
-                alt="promotion 1"
-                layout="fill"
-              />
-            </div>
-            <h3 className="mt-2 font-semibold text-lg">
-              50% Off for COVID-19 Test Packages
-            </h3>
-
-            <p className="text-xs text-gray-600 mt-3">
-              *Term & Conditions Apply
-            </p>
-          </div>
-
-          <div className="p-4 rounded-xl shadow-md bg-white mx-2">
-            <div className="aspect-w-3 aspect-h-2">
-              <Image
-                src="/images/good-news-3.png"
-                alt="promotion 1"
-                layout="fill"
-              />
-            </div>
-            <h3 className="mt-2 font-semibold text-lg">
-              Skin Care up to 30% off at Watsons
-            </h3>
-
-            <p className="text-xs text-gray-600 mt-3">*While Stock Last</p>
-          </div>
-
-          <div className="p-4 rounded-xl shadow-md bg-white mx-2">
-            <div className="aspect-w-3 aspect-h-2">
-              <Image
-                src="/images/good-news-4.png"
-                alt="promotion 1"
-                layout="fill"
-              />
-            </div>
-            <h3 className="mt-2 font-semibold text-lg">
-              Buy 1 Free 1 Eyeware & Free Check up
-            </h3>
-
-            <p className="text-xs text-gray-600 mt-3">*While Stock Last</p>
-          </div>
-          <div className="p-4 rounded-xl shadow-md bg-white mx-2">
-            <div className="aspect-w-3 aspect-h-2">
-              <Image
-                src="/images/good-news-4.png"
-                alt="promotion 1"
-                layout="fill"
-              />
-            </div>
-            <h3 className="mt-2 font-semibold text-lg">
-              Buy 1 Free 1 Eyeware & Free Check up
-            </h3>
-
-            <p className="text-xs text-gray-600 mt-3">*While Stock Last</p>
-          </div>
-        </MultiCarousel>
+        {news.length ? (
+          <MultiCarousel responsive={responsive}>
+            {news.map((news) => (
+              <NewsCard key={news.id} news={news} />
+            ))}
+          </MultiCarousel>
+        ) : null}
       </section>
 
       {/* Services */}
@@ -720,6 +653,21 @@ const ServiceCard = ({ service }: { service: Service }) => {
           </span>
         </p>
         <p className="text-xs text-gray-600 mt-3">{service.location}</p>
+      </a>
+    </Link>
+  )
+}
+
+const NewsCard = ({ news }: { news: News }) => {
+  return (
+    <Link href={`/news/${news.id}`}>
+      <a className="block p-4 rounded-xl shadow-md bg-white mx-2">
+        <div className="aspect-w-3 aspect-h-2">
+          <Image src={news.image} alt="promotion 1" layout="fill" />
+        </div>
+        <h3 className="mt-2 font-semibold text-lg">{news.title}</h3>
+
+        <p className="text-xs text-gray-600 mt-3">{news.review}</p>
       </a>
     </Link>
   )

@@ -126,3 +126,27 @@ export const centres = [
     ratedBy: 885,
   },
 ]
+
+export type News = typeof news[0]
+
+export const news = [
+  {
+    id: 1,
+    title: 'Decrease stress',
+    review:
+      "Massage is an effective and beneficial treatment to decrease the feeling of stress. Stress is the body's way of responding to physical and emotional demands.",
+    image: '/images/news-1.jpg',
+    body: `
+    <h2>When can massage be used to decrease stress?</h2>
+    <p>Massage can be used to treat stress in any circumstance. Stress can be related to emotional or physical events in life, such as, work life, health or sporting performances. Massage can treat all types of stress. Massage can alleviate stress and increase mood by stimulating feel good hormones, stimulating the parasympathetic nervous system and promoting relaxation.</p>
+    <h2>How does massage help to decrease stress?</h2>
+    <p>Massage is an effective treatment to help decrease stress. Massage helps to decrease stress by lowering the heart rate, relaxing muscles and releasing endorphins.</p>
+    <p>Massage helps to decrease stress by lowering the heart rate. Massage increases temperature in the body and promotes relaxation. When the body relaxes, heart rate is reduced. Stress levels are relieved and the feeling of calmness and relaxation increases.</p>
+    <p>Massage reduces stress by relaxing muscles and soft tissues in the body. Massage relaxes muscles by increase temperature and blood circulation. An increase of temperature is stimulated by friction against the skin. Increased circulation delivers more blood to the muscles, removing waste products and relieving tension.</p>
+    <p>Massage also helps decrease stress by releasing endorphins that calm the peripheral nervous system. The peripheral nervous system is part of the nervous system in the body. The function of the peripheral nervous system is the communication relay between the brain and extremities. Massage stimulates feel good hormones into the peripheral nervous system allowing message of calmness and relaxation to be relayed. When endorphins are released, stress related hormones are decreased therefore the feeling of stress is relieved.</p>
+    <h2>What are the benefits of receiving a massage to decrease stress?</h2>
+    <p>Massage to decrease stress has many benefits. The benefits of massage for decreased stress include:</p>
+    <ul><li>Relaxation</li><li>Pain relief</li><li>Decreased anxiety and depression</li><li>Increased feeling of content and well being</li></ul><h2>Summary</h2><p>Massage helps to reduce and relieve the feeling of stress. Stress can be related to emotional or physical demands. Massage can be used at any time to relax the body. Massage is an effective treatment to decrease other emotions related to stress such as, anxiety and depression. Massage helps decrease stress by lowering the heart rate, promoting relaxation and releasing hormones. Massage therapists at Manchester Physio provide a wide range of massage therapy services to decrease stress</p>
+    `,
+  },
+]
