@@ -3,7 +3,7 @@ import Layout from '@/components/Layout'
 export default function Contact() {
   return (
     <section className="bg-white">
-      <div className="bg-limeade py-20">
+      <div className="bg-limeade py-10">
         <h1 className="text-4xl text-white mb-4 text-center">Contact Us</h1>
         <p className="text-white text-center text-lg">
           Got any enquiries? Reach us here

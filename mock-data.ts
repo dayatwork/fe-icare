@@ -13,7 +13,9 @@ export const services = [
     ratedBy: 226,
     location: 'Taman University (5km)',
     category: ['Spa'],
-    promotion: true,
+    promotion: false,
+    image:
+      'https://images.unsplash.com/photo-1515377905703-c4788e51af15?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&q=80',
   },
   {
     id: 1,
@@ -27,7 +29,9 @@ export const services = [
     ratedBy: 116,
     location: 'Taman University (5km)',
     category: ['Spa'],
-    promotion: true,
+    promotion: false,
+    image:
+      'https://images.unsplash.com/photo-1515377905703-c4788e51af15?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&q=80',
   },
   {
     id: 2,
@@ -41,7 +45,9 @@ export const services = [
     ratedBy: 79,
     location: 'Taman University (5km)',
     category: ['Spa'],
-    promotion: true,
+    promotion: false,
+    image:
+      'https://images.unsplash.com/photo-1515377905703-c4788e51af15?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&q=80',
   },
   {
     id: 3,
@@ -56,12 +62,14 @@ export const services = [
     location: 'Taman University (5km)',
     category: ['Spa'],
     promotion: true,
+    image:
+      'https://images.unsplash.com/photo-1515377905703-c4788e51af15?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&q=80',
   },
   {
     id: 4,
     name: 'Classic Manicure',
     centerId: 2,
-    centerName: 'Fresha',
+    centerName: 'Ana Salon & Spa',
     originalPrice: 698,
     bookingPrice: 10,
     price: 228,
@@ -70,13 +78,15 @@ export const services = [
     location:
       '28 Jalan Eko Botani 3/2, Nusajaya (Taman Eko Botani), 79100, Johor',
     category: ['Beauty Salon'],
-    promotion: false,
+    promotion: true,
+    image:
+      'https://images.unsplash.com/photo-1457972729786-0411a3b2b626?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&q=80',
   },
   {
     id: 5,
     name: 'Gel Pedicure',
     centerId: 2,
-    centerName: 'Fresha',
+    centerName: 'Ana Salon & Spa',
     originalPrice: 598,
     bookingPrice: 10,
     price: 128,
@@ -85,13 +95,15 @@ export const services = [
     location:
       '28 Jalan Eko Botani 3/2, Nusajaya (Taman Eko Botani), 79100, Johor',
     category: ['Beauty Salon'],
-    promotion: false,
+    promotion: true,
+    image:
+      'https://images.unsplash.com/photo-1519415510236-718bdfcd89c8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&q=80',
   },
   {
     id: 6,
     name: '1-Hour full Body Massage',
     centerId: 2,
-    centerName: 'Fresha',
+    centerName: 'Ana Salon & Spa',
     originalPrice: 998,
     bookingPrice: 10,
     price: 328,
@@ -99,7 +111,9 @@ export const services = [
     ratedBy: 73,
     location: 'Taman University (5km)',
     category: ['Spa'],
-    promotion: false,
+    promotion: true,
+    image:
+      'https://images.unsplash.com/photo-1515377905703-c4788e51af15?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&q=80',
   },
 ]
 
@@ -114,16 +128,18 @@ export const centres = [
     category: ['Spa'],
     rating: 4,
     ratedBy: 573,
+    image: '/images/centre-1.jpg',
   },
   {
     id: 2,
-    name: 'Fresha',
+    name: 'Ana Salon & Spa',
     location:
       '28 Jalan Eko Botani 3/2, Nusajaya (Taman Eko Botani), 79100, Johor',
     facilities: ['wifi', 'parking'],
     category: ['Beauty Salon', 'Spa'],
     rating: 5,
     ratedBy: 885,
+    image: '/images/centre-2.jpg',
   },
 ]
 

@@ -637,7 +637,7 @@ const ServiceCard = ({ service }: { service: Service }) => {
         </div>
         <div className="aspect-w-3 aspect-h-2">
           <Image
-            src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=550&q=80"
+            src={service?.image}
             alt="promotion 1"
             layout="fill"
             // className="object-cover"

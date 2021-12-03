@@ -617,6 +617,7 @@ const ServiceCard = ({ service }: { service: Service }) => {
     rating,
     centerName,
     centerId,
+    image,
   } = service
   return (
     <Link href={`/services/${id}`}>
@@ -635,7 +636,7 @@ const ServiceCard = ({ service }: { service: Service }) => {
           </div>
           <div className="aspect-w-3 aspect-h-2">
             <Image
-              src="/images/promotion-2.png"
+              src={image}
               alt="promotion 1"
               layout="fill"
               // className="object-cover"

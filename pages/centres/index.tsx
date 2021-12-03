@@ -7,6 +7,7 @@ import Image from 'next/image'
 import { SearchIcon, StarIcon } from '@heroicons/react/solid'
 // import * as Slider from '@radix-ui/react-slider'
 import useSWR from 'swr'
+import { useRouter } from 'next/router'
 
 import Layout from '@/components/Layout'
 import { Centre } from 'mock-data'
@@ -37,20 +38,37 @@ function classNames(...classes: string[]) {
 
 const categories = [
   { id: 'Spa', name: 'Spa' },
+  { id: 'Hair Salon', name: 'Hair Salon' },
+  { id: 'Barbershop', name: 'Barbershop' },
   { id: 'Beauty Salon', name: 'Beauty Salon' },
+  { id: 'Nail Salon', name: 'Nail Salon' },
+  { id: 'Massage', name: 'Massage' },
+  { id: 'Theraphy Centre', name: 'Theraphy Centre' },
+  { id: 'Gym & Fitness', name: 'Gym & Fitness' },
+  { id: 'Clinic', name: 'Clinic' },
+  { id: 'Hospital', name: 'Hospital' },
 ]
 
 const ratings = [5, 4, 3, 2, 1]
 
 export default function Centres() {
+  const router = useRouter()
   // const [priceRange, setPriceRange] = useState([0, 500])
   const [sortBy, setSortBy] = useState(sortingParameters[3])
   const { data: fetchedData } = useSWR<Centre[]>(() => `/api/centres`, fetcher)
   const [selectedCategory, setSelectedCategory] = useState<
     Record<string, boolean>
   >({
-    ['Spa']: false,
-    ['Beauty Salon']: false,
+    ['Spa']: router.query.category === 'Spa',
+    ['Beauty Salon']: router.query.category === 'Beauty Salon',
+    ['Barbershop']: router.query.category === 'Barbershop',
+    ['Hair Salon']: router.query.category === 'Hair Salon',
+    ['Nail Salon']: router.query.category === 'Nail Salon',
+    ['Massage']: router.query.category === 'Massage',
+    ['Theraphy Centre']: router.query.category === 'Theraphy Centre',
+    ['Gym & Fitness']: router.query.category === 'Gym & Fitness',
+    ['Clinic']: router.query.category === 'Clinic',
+    ['Hospital']: router.query.category === 'Hospital',
   })
   const [selectedRatings, setSelectedRatings] = useState<
     Record<string, boolean>
@@ -595,7 +613,7 @@ const CentreCard = ({ centre }: { centre: Centre }) => {
       </div>
       <div className="aspect-w-3 aspect-h-2">
         <Image
-          src="/images/promotion-2.png"
+          src={centre.image}
           alt="promotion 1"
           layout="fill"
           // className="object-cover"
