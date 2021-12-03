@@ -1,10 +1,15 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import Marquee from 'react-fast-marquee'
 import { CheckIcon } from '@heroicons/react/outline'
 import { Carousel } from 'react-responsive-carousel'
 import MultiCarousel from 'react-multi-carousel'
 import { StarIcon } from '@heroicons/react/solid'
+import useSWR from 'swr'
+
 import Layout from '@/components/Layout'
+import { Service } from 'mock-data'
+import { fetcher } from 'utils'
 
 const responsive = {
   superLargeDesktop: {
@@ -30,7 +35,74 @@ const responsive = {
   },
 }
 
+const services = [
+  {
+    name: 'Spa',
+    text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam, reiciendis.',
+    image:
+      'https://images.unsplash.com/photo-1515377905703-c4788e51af15?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=550&q=80',
+  },
+  {
+    name: 'Hair Salon',
+    text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam, reiciendis.',
+    image:
+      'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=550&q=80',
+  },
+  {
+    name: 'Barbershop',
+    text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam, reiciendis.',
+    image:
+      'https://images.unsplash.com/photo-1622287162716-f311baa1a2b8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=550&q=80',
+  },
+  {
+    name: 'Beauty Salon',
+    text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam, reiciendis.',
+    image:
+      'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=550&q=80',
+  },
+  {
+    name: 'Nail Salon',
+    text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam, reiciendis.',
+    image:
+      'https://images.unsplash.com/photo-1457972729786-0411a3b2b626?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=550&q=80',
+  },
+  {
+    name: 'Massage',
+    text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam, reiciendis.',
+    image:
+      'https://images.unsplash.com/photo-1542848284-8afa78a08ccb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=550&q=80',
+  },
+  {
+    name: 'Theraphy Centre',
+    text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam, reiciendis.',
+    image:
+      'https://images.unsplash.com/photo-1604881991720-f91add269bed?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=550&q=80',
+  },
+  {
+    name: 'Gym & Fitness',
+    text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam, reiciendis.',
+    image:
+      'https://images.unsplash.com/photo-1558611848-73f7eb4001a1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=550&q=80',
+  },
+  {
+    name: 'Clinic',
+    text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam, reiciendis.',
+    image:
+      'https://images.unsplash.com/photo-1589279003513-467d320f47eb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=550&q=80',
+  },
+  {
+    name: 'Hospital',
+    text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam, reiciendis.',
+    image:
+      'https://images.unsplash.com/photo-1586773860418-d37222d8fce3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=550&q=80',
+  },
+]
+
 export default function Home() {
+  const { data } = useSWR<Service[]>(() => `/api/services`, fetcher)
+
+  const promotionServices = data?.filter((service) => service.promotion)
+
   return (
     <>
       {/* Hero */}
@@ -139,159 +211,9 @@ export default function Home() {
         <h2 className="text-2xl font-semibold mb-6">Promotions</h2>
         {/* <div className="grid grid-cols-4 gap-6"> */}
         <MultiCarousel responsive={responsive}>
-          <div className="p-4 rounded-xl shadow-md bg-white mx-2">
-            {/* Rating */}
-            <div className="flex justify-end mb-3">
-              <div className="flex items-center space-x-2">
-                <div className="flex items-center">
-                  <StarIcon className="w-4 h-4 text-gold" />
-                  <StarIcon className="w-4 h-4 text-gold" />
-                  <StarIcon className="w-4 h-4 text-gold" />
-                  <StarIcon className="w-4 h-4 text-gold" />
-                </div>
-                <p className="text-sm">58 Rated</p>
-              </div>
-            </div>
-            <div className="aspect-w-3 aspect-h-2">
-              <Image
-                src="/images/promotion-1.png"
-                alt="promotion 1"
-                layout="fill"
-                // className="object-cover"
-              />
-            </div>
-            <h3 className="mt-2 font-semibold text-lg">
-              Cancer Beacon Screening
-            </h3>
-            <p className="space-x-2 mt-6">
-              <span className="text-lg text-gray-500 line-through">RM868</span>
-              <span className="text-lg text-limeade font-semibold">RM268</span>
-            </p>
-            <p className="text-xs text-gray-600 mt-3">Taman University (5km)</p>
-          </div>
-
-          <div className="p-4 rounded-xl shadow-md bg-white mx-2">
-            {/* Rating */}
-            <div className="flex justify-end mb-3">
-              <div className="flex items-center space-x-2">
-                <div className="flex items-center">
-                  <StarIcon className="w-4 h-4 text-gold" />
-                  <StarIcon className="w-4 h-4 text-gold" />
-                  <StarIcon className="w-4 h-4 text-gold" />
-                  <StarIcon className="w-4 h-4 text-gold" />
-                </div>
-                <p className="text-sm">58 Rated</p>
-              </div>
-            </div>
-            <div className="aspect-w-3 aspect-h-2">
-              <Image
-                src="/images/promotion-2.png"
-                alt="promotion 1"
-                layout="fill"
-                // className="object-cover"
-              />
-            </div>
-            <h3 className="mt-2 font-semibold text-lg">
-              1-Hour full Body Massage Yeo Beuty & Spa
-            </h3>
-            <p className="space-x-2 mt-6">
-              <span className="text-lg text-gray-500 line-through">RM868</span>
-              <span className="text-lg text-limeade font-semibold">RM268</span>
-            </p>
-            <p className="text-xs text-gray-600 mt-3">Taman University (5km)</p>
-          </div>
-
-          <div className="p-4 rounded-xl shadow-md bg-white mx-2">
-            {/* Rating */}
-            <div className="flex justify-end mb-3">
-              <div className="flex items-center space-x-2">
-                <div className="flex items-center">
-                  <StarIcon className="w-4 h-4 text-gold" />
-                  <StarIcon className="w-4 h-4 text-gold" />
-                  <StarIcon className="w-4 h-4 text-gold" />
-                  <StarIcon className="w-4 h-4 text-gold" />
-                </div>
-                <p className="text-sm">58 Rated</p>
-              </div>
-            </div>
-            <div className="aspect-w-3 aspect-h-2">
-              <Image
-                src="/images/promotion-3.png"
-                alt="promotion 1"
-                layout="fill"
-                // className="object-cover"
-              />
-            </div>
-            <h3 className="mt-2 font-semibold text-lg">
-              Sinovac Booster 3rd Dose
-            </h3>
-            <p className="space-x-2 mt-6">
-              <span className="text-lg text-gray-500 line-through">RM868</span>
-              <span className="text-lg text-limeade font-semibold">RM268</span>
-            </p>
-            <p className="text-xs text-gray-600 mt-3">Taman University (5km)</p>
-          </div>
-
-          <div className="p-4 rounded-xl shadow-md bg-white mx-2">
-            {/* Rating */}
-            <div className="flex justify-end mb-3">
-              <div className="flex items-center space-x-2">
-                <div className="flex items-center">
-                  <StarIcon className="w-4 h-4 text-gold" />
-                  <StarIcon className="w-4 h-4 text-gold" />
-                  <StarIcon className="w-4 h-4 text-gold" />
-                  <StarIcon className="w-4 h-4 text-gold" />
-                </div>
-                <p className="text-sm">58 Rated</p>
-              </div>
-            </div>
-            <div className="aspect-w-3 aspect-h-2">
-              <Image
-                src="/images/promotion-4.png"
-                alt="promotion 1"
-                layout="fill"
-                // className="object-cover"
-              />
-            </div>
-            <h3 className="mt-2 font-semibold text-lg">
-              Zumba Class for 2-Hour
-            </h3>
-            <p className="space-x-2 mt-6">
-              <span className="text-lg text-gray-500 line-through">RM868</span>
-              <span className="text-lg text-limeade font-semibold">RM268</span>
-            </p>
-            <p className="text-xs text-gray-600 mt-3">Taman University (5km)</p>
-          </div>
-          <div className="p-4 rounded-xl shadow-md bg-white mx-2">
-            {/* Rating */}
-            <div className="flex justify-end mb-3">
-              <div className="flex items-center space-x-2">
-                <div className="flex items-center">
-                  <StarIcon className="w-4 h-4 text-gold" />
-                  <StarIcon className="w-4 h-4 text-gold" />
-                  <StarIcon className="w-4 h-4 text-gold" />
-                  <StarIcon className="w-4 h-4 text-gold" />
-                </div>
-                <p className="text-sm">58 Rated</p>
-              </div>
-            </div>
-            <div className="aspect-w-3 aspect-h-2">
-              <Image
-                src="/images/promotion-4.png"
-                alt="promotion 1"
-                layout="fill"
-                // className="object-cover"
-              />
-            </div>
-            <h3 className="mt-2 font-semibold text-lg">
-              Zumba Class for 2-Hour
-            </h3>
-            <p className="space-x-2 mt-6">
-              <span className="text-lg text-gray-500 line-through">RM868</span>
-              <span className="text-lg text-limeade font-semibold">RM268</span>
-            </p>
-            <p className="text-xs text-gray-600 mt-3">Taman University (5km)</p>
-          </div>
+          {promotionServices?.map((service) => (
+            <ServiceCard key={service.id} service={service} />
+          ))}
         </MultiCarousel>
 
         {/* </div> */}
@@ -387,107 +309,38 @@ export default function Home() {
           Services Available
         </h2>
         <MultiCarousel responsive={responsive}>
-          <div className="shadow-md bg-white relative m-6">
-            <div className="aspect-w-2 aspect-h-3">
-              <Image
-                src="/images/service-1.png"
-                alt="promotion 1"
-                layout="fill"
-                className="object-cover filter hover:brightness-50 transition"
-              />
-            </div>
-            <div className="absolute bottom-0 p-6 text-white">
-              <h3
-                className="mt-2 font-semibold text-3xl text-white"
-                style={{ textShadow: '2px 2px 4px rgba(0,0,0, 0.5)' }}
-              >
-                Rehab Centre
-              </h3>
+          {services?.map((service) => (
+            <Link
+              href={`/services?category=${service.name}`}
+              key={service.name}
+            >
+              <a className="block shadow-md bg-white relative m-6">
+                <div className="aspect-w-2 aspect-h-3">
+                  <Image
+                    src={service.image}
+                    alt="promotion 1"
+                    layout="fill"
+                    className="object-cover filter hover:brightness-50 transition"
+                  />
+                </div>
+                <div className="absolute bottom-0 p-6 text-white">
+                  <h3
+                    className="mt-2 font-semibold text-3xl text-white"
+                    style={{ textShadow: '2px 2px 4px rgba(0,0,0, 0.5)' }}
+                  >
+                    {service.name}
+                  </h3>
 
-              <p
-                className="text-white mt-3 text-lg"
-                style={{ textShadow: '2px 2px 4px rgba(0,0,0, 0.5)' }}
-              >
-                Slow down biological ageing for a longer and fuller life
-              </p>
-            </div>
-          </div>
-          <div className="shadow-md bg-white relative m-6">
-            <div className="aspect-w-2 aspect-h-3">
-              <Image
-                src="/images/service-2.png"
-                alt="promotion 2"
-                layout="fill"
-                className="object-cover filter hover:brightness-50 transition"
-              />
-            </div>
-            <div className="absolute bottom-0 p-6 text-white">
-              <h3
-                className="mt-2 font-semibold text-3xl text-white"
-                style={{ textShadow: '2px 2px 4px rgba(0,0,0, 0.5)' }}
-              >
-                Fitness Centre
-              </h3>
-
-              <p
-                className="text-white mt-3 text-lg"
-                style={{ textShadow: '2px 2px 4px rgba(0,0,0, 0.5)' }}
-              >
-                Regulate the metabolism in a healthy and lasting way
-              </p>
-            </div>
-          </div>
-          <div className="shadow-md bg-white relative m-6">
-            <div className="aspect-w-2 aspect-h-3">
-              <Image
-                src="/images/service-3.png"
-                alt="promotion 3"
-                layout="fill"
-                className="object-cover filter hover:brightness-50 transition"
-              />
-            </div>
-            <div className="absolute bottom-0 p-6 text-white">
-              <h3
-                className="mt-2 font-semibold text-3xl text-white"
-                style={{ textShadow: '2px 2px 4px rgba(0,0,0, 0.5)' }}
-              >
-                Physiotherapy
-              </h3>
-
-              <p
-                className="text-white mt-3 text-lg"
-                style={{ textShadow: '2px 2px 4px rgba(0,0,0, 0.5)' }}
-              >
-                Mantain and make the most of a patients mobility function &
-                Wellbeing
-              </p>
-            </div>
-          </div>
-          <div className="shadow-md bg-white relative m-6">
-            <div className="aspect-w-2 aspect-h-3">
-              <Image
-                src="/images/service-4.png"
-                alt="promotion 4"
-                layout="fill"
-                className="object-cover filter hover:brightness-50 transition"
-              />
-            </div>
-            <div className="absolute bottom-0 p-6 text-white">
-              <h3
-                className="mt-2 font-semibold text-3xl text-white"
-                style={{ textShadow: '2px 2px 4px rgba(0,0,0, 0.5)' }}
-              >
-                Yoga Class
-              </h3>
-
-              <p
-                className="text-white mt-3 text-lg"
-                style={{ textShadow: '2px 2px 4px rgba(0,0,0, 0.5)' }}
-              >
-                Regulate the metabolism in a healthy and lasting way
-              </p>
-            </div>
-          </div>
+                  <p
+                    className="text-white mt-3 text-lg"
+                    style={{ textShadow: '2px 2px 4px rgba(0,0,0, 0.5)' }}
+                  >
+                    {service.text}
+                  </p>
+                </div>
+              </a>
+            </Link>
+          ))}
         </MultiCarousel>
       </section>
 
@@ -829,6 +682,46 @@ export default function Home() {
         </Marquee>
       </section>
     </>
+  )
+}
+
+const ServiceCard = ({ service }: { service: Service }) => {
+  return (
+    <Link href={`/services/${service.id}`}>
+      <a className="block p-4 rounded-xl shadow-md bg-white mx-2">
+        {/* Rating */}
+        <div className="flex justify-end mb-3">
+          <div className="flex items-center space-x-2">
+            <div className="flex items-center">
+              {Array.from({ length: service?.rating }, (_, i) => i + 1).map(
+                (i) => (
+                  <StarIcon key={i} className="w-4 h-4 text-gold" />
+                )
+              )}
+            </div>
+            <p className="text-sm">{service?.ratedBy} Rated</p>
+          </div>
+        </div>
+        <div className="aspect-w-3 aspect-h-2">
+          <Image
+            src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=550&q=80"
+            alt="promotion 1"
+            layout="fill"
+            // className="object-cover"
+          />
+        </div>
+        <h3 className="mt-2 font-semibold text-lg">{service.name}</h3>
+        <p className="space-x-2 mt-6">
+          <span className="text-lg text-gray-500 line-through">
+            RM{service.originalPrice}
+          </span>
+          <span className="text-lg text-limeade font-semibold">
+            RM{service.price}
+          </span>
+        </p>
+        <p className="text-xs text-gray-600 mt-3">{service.location}</p>
+      </a>
+    </Link>
   )
 }
 

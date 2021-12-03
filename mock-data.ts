@@ -13,6 +13,7 @@ export const services = [
     ratedBy: 226,
     location: 'Taman University (5km)',
     category: ['Spa'],
+    promotion: true,
   },
   {
     id: 1,
@@ -26,6 +27,7 @@ export const services = [
     ratedBy: 116,
     location: 'Taman University (5km)',
     category: ['Spa'],
+    promotion: true,
   },
   {
     id: 2,
@@ -39,6 +41,7 @@ export const services = [
     ratedBy: 79,
     location: 'Taman University (5km)',
     category: ['Spa'],
+    promotion: true,
   },
   {
     id: 3,
@@ -52,6 +55,7 @@ export const services = [
     ratedBy: 56,
     location: 'Taman University (5km)',
     category: ['Spa'],
+    promotion: true,
   },
   {
     id: 4,
@@ -66,6 +70,7 @@ export const services = [
     location:
       '28 Jalan Eko Botani 3/2, Nusajaya (Taman Eko Botani), 79100, Johor',
     category: ['Beauty Salon'],
+    promotion: false,
   },
   {
     id: 5,
@@ -80,6 +85,7 @@ export const services = [
     location:
       '28 Jalan Eko Botani 3/2, Nusajaya (Taman Eko Botani), 79100, Johor',
     category: ['Beauty Salon'],
+    promotion: false,
   },
   {
     id: 6,
@@ -93,6 +99,7 @@ export const services = [
     ratedBy: 73,
     location: 'Taman University (5km)',
     category: ['Spa'],
+    promotion: false,
   },
 ]
 
