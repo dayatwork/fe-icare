@@ -35,10 +35,10 @@ export default function BookingCentre() {
 
   return (
     <div className="max-w-7xl mx-auto px-4">
-      <div className="grid grid-cols-3 gap-10 py-6">
+      <div className="grid grid-cols-3 gap-4 lg:gap-10 py-6">
         {/* Left */}
-        <div className="col-span-2">
-          <div className="bg-white shadow-md rounded-md p-6 mb-6">
+        <div className="col-span-3 lg:col-span-2">
+          <div className="bg-white shadow-md rounded-md p-4 md:p-6 mb-6">
             <h2 className="font-semibold text-xl mb-2 pb-2 border-b border-gray-200">
               Select Appointment Date & Time
             </h2>
@@ -62,9 +62,9 @@ export default function BookingCentre() {
                   Select Time
                 </RadioGroup.Label>
 
-                <div className="mb-8 flex space-x-10 px-4">
+                <div className="mb-4 md:mb-8 flex space-x-6 md:space-x-10 px-4">
                   <span className="py-2 text-lg font-semibold">AM</span>
-                  <div className="flex-1 grid grid-cols-4 gap-4">
+                  <div className="flex-1 grid grid-cols-3 md:grid-cols-4 gap-2 md:gap-4">
                     {[
                       '09:00 AM',
                       '10:00 AM',
@@ -80,7 +80,7 @@ export default function BookingCentre() {
                         <RadioGroup.Option key={i} value={i}>
                           {({ checked }) => (
                             <span
-                              className={`flex items-center justify-center  cursor-pointer text-lg py-2 rounded-md ${
+                              className={`flex items-center justify-center  cursor-pointer text-lg py-2 rounded-md whitespace-nowrap ${
                                 checked
                                   ? 'bg-limeade text-white'
                                   : 'border border-limeade text-limeade '
@@ -94,9 +94,9 @@ export default function BookingCentre() {
                   </div>
                 </div>
 
-                <div className="mb-4 flex space-x-10 px-4">
+                <div className="mb-4 flex space-x-6 md:space-x-10 px-4">
                   <span className="py-2 text-lg font-semibold">PM</span>
-                  <div className="flex-1 grid grid-cols-4 gap-4">
+                  <div className="flex-1 grid grid-cols-3 md:grid-cols-4 gap-2 md:gap-4">
                     {[
                       '09:00 AM',
                       '10:00 AM',
@@ -112,7 +112,7 @@ export default function BookingCentre() {
                         <RadioGroup.Option key={i} value={i}>
                           {({ checked }) => (
                             <span
-                              className={`flex items-center justify-center  cursor-pointer text-lg py-2 rounded-md ${
+                              className={`flex items-center justify-center  cursor-pointer text-lg py-2 rounded-md whitespace-nowrap ${
                                 checked
                                   ? 'bg-limeade text-white'
                                   : 'border border-limeade text-limeade '
@@ -130,14 +130,14 @@ export default function BookingCentre() {
           </div>
 
           {/* Select Service */}
-          <div className="bg-white shadow-md rounded-md p-6 mb-6">
+          <div className="bg-white shadow-md rounded-md p-4 md:p-6 mb-6">
             <h2 className="font-semibold text-xl mb-2 pb-2 border-b border-gray-200">
               Select Service
             </h2>
 
             <RadioGroup value={selectedService} onChange={setSelectedService}>
               <RadioGroup.Label className="sr-only">Service</RadioGroup.Label>
-              <div className="grid grid-cols-3 gap-6">
+              <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
                 {services
                   ?.filter((service) => service.centerId === centre?.id)
                   .map((service) => (
@@ -161,8 +161,8 @@ export default function BookingCentre() {
         </div>
 
         {/* Right */}
-        <div>
-          <div className="bg-white shadow-md rounded-md p-6 mb-6">
+        <div className="col-span-3 lg:col-span-1">
+          <div className="bg-white shadow-md rounded-md p-4 md:p-6 mb-6">
             <div className="flex space-x-3 py-2">
               <img
                 src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=150&q=80"

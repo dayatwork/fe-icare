@@ -247,25 +247,25 @@ export default function Home() {
               href={`/services?category=${service.name}`}
               key={service.name}
             >
-              <a className="block shadow-md bg-white relative m-6">
+              <a className="block shadow-md bg-white relative m-2 lg:m-6">
                 <div className="aspect-w-2 aspect-h-3">
                   <Image
                     src={service.image}
                     alt="promotion 1"
                     layout="fill"
-                    className="object-cover filter hover:brightness-50 transition"
+                    className="object-cover filter brightness-75 hover:brightness-50 transition"
                   />
                 </div>
-                <div className="absolute bottom-0 p-6 text-white">
+                <div className="absolute bottom-0 p-4 lg:p-6 text-white">
                   <h3
-                    className="mt-2 font-semibold text-3xl text-white"
+                    className="mt-2 font-semibold text-md lg:text-3xl text-white"
                     style={{ textShadow: '2px 2px 4px rgba(0,0,0, 0.5)' }}
                   >
                     {service.name}
                   </h3>
 
                   <p
-                    className="text-white mt-3 text-lg"
+                    className="text-white mt-1 lg:mt-3 text-sm lg:text-lg"
                     style={{ textShadow: '2px 2px 4px rgba(0,0,0, 0.5)' }}
                   >
                     {service.text}
@@ -282,9 +282,9 @@ export default function Home() {
         <h2 className="text-2xl font-semibold mb-6 text-center">
           Why we are better?
         </h2>
-        <div className="grid grid-cols-3 gap-10">
-          <div className="p-4 rounded-xl shadow-md bg-white mx-2">
-            <div className="flex flex-col items-center space-y-8 p-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 xl:gap-10">
+          <div className="md:p-4 rounded-xl shadow-md bg-white mx-2">
+            <div className="flex flex-col items-center space-y-4 md:space-y-8 p-6">
               <Image
                 src="/images/feature-1.png"
                 alt="promotion 1"
@@ -301,8 +301,8 @@ export default function Home() {
               </p>
             </div>
           </div>
-          <div className="p-4 rounded-xl shadow-md bg-white mx-2">
-            <div className="flex flex-col items-center space-y-8 p-6">
+          <div className="md:p-4 rounded-xl shadow-md bg-white mx-2">
+            <div className="flex flex-col items-center space-y-4 md:space-y-8 p-6">
               <Image
                 src="/images/feature-2.png"
                 alt="promotion 1"
@@ -318,8 +318,8 @@ export default function Home() {
               </p>
             </div>
           </div>
-          <div className="p-4 rounded-xl shadow-md bg-white mx-2">
-            <div className="flex flex-col items-center space-y-8 p-6">
+          <div className="md:p-4 rounded-xl shadow-md bg-white mx-2">
+            <div className="flex flex-col items-center space-y-4 md:space-y-8 p-6">
               <Image
                 src="/images/feature-3.png"
                 alt="promotion 1"
@@ -341,14 +341,14 @@ export default function Home() {
 
       {/* CTA */}
       <section className="bg-limeade py-6 tablet:py-10 desktop:py-16">
-        <div className="max-w-7xl mx-auto px-8 flex items-center justify-between ">
-          <p className="text-3xl text-white max-w-4xl">
+        <div className="max-w-7xl mx-auto px-8 flex items-center justify-between space-x-6">
+          <p className="text-lg lg:text-3xl text-white max-w-4xl">
             If you are <span className="font-bold uppercase">care</span> and{' '}
             <span className="font-bold uppercase">serious</span> about your{' '}
             <span className="font-bold uppercase">health</span>, Book your
             Healthcare & Wellness services with us now!
           </p>
-          <button className="text-2xl px-6 py-2 rounded-full border-2 border-white whitespace-nowrap text-white hover:bg-white hover:text-limeade font-bold transition">
+          <button className="text-lg lg:text-2xl px-4 lg:px-6 py-2 rounded-full border-2 border-white whitespace-nowrap text-white hover:bg-white hover:text-limeade font-bold transition">
             Book Now
           </button>
         </div>
@@ -369,11 +369,11 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="py-6 tablet:py-10 desktop:py-16 max-w-7xl mx-auto px-6">
-        <h2 className="text-2xl font-semibold mb-8 text-limeade">
+      <section className="py-6 tablet:py-10 desktop:py-16 max-w-7xl mx-auto px-10">
+        <h2 className="text-2xl font-semibold mb-4 lg:mb-8 text-limeade">
           Best South-East Asia Destination for Healthcare & Wellness
         </h2>
-        <p className="max-w-5xl text-xl">
+        <p className="max-w-5xl md:text-lg lg:text-xl">
           i-care brings you discounted offers on awesome wellness services
           experience in your city – all from a single, convenient mobile apps
           and website Browse through thousands of i-Care Deals and save up to
@@ -391,8 +391,8 @@ export default function Home() {
         />
       </div>
       <section className="max-w-7xl mx-auto px-6 py-6 tablet:py-10 desktop:pt-24 desktop:pb-16">
-        <div className="flex space-x-10">
-          <div className="aspect-w-1 asect-h-6 w-1/3 h-[700px]">
+        <div className="flex md:space-x-10">
+          <div className="hidden md:block aspect-w-1 asect-h-6 w-1/3 h-[700px]">
             <Image
               layout="fill"
               src="/images/mobile-app.png"
@@ -400,47 +400,51 @@ export default function Home() {
               className="object-contain"
             />
           </div>
-          <div className="p-10">
-            <h2 className="text-3xl font-semibold mb-8 text-limeade max-w-lg">
+          <div className="px-4 lg:p-10">
+            <h2 className="text-2xl font-semibold mb-4 lg:mb-8 text-limeade">
               The only booking Platform that subscription-free
             </h2>
             <ul className="space-y-4">
               <li className="flex space-x-2 items-center">
                 <CheckIcon className="w-6 h-6 text-limeade " />
-                <p className="text-lg">Free unlimited real-time scheduling</p>
+                <p className="md:text-lg flex-1">
+                  Free unlimited real-time scheduling
+                </p>
               </li>
               <li className="flex space-x-2 items-center">
                 <CheckIcon className="w-6 h-6 text-limeade " />
-                <p className="text-lg">Free multiple location management</p>
+                <p className="md:text-lg flex-1">
+                  Free multiple location management
+                </p>
               </li>
               <li className="flex space-x-2 items-center">
                 <CheckIcon className="w-6 h-6 text-limeade " />
-                <p className="text-lg">
+                <p className="md:text-lg flex-1">
                   Free analytics and financial management
                 </p>
               </li>
               <li className="flex space-x-2 items-center">
                 <CheckIcon className="w-6 h-6 text-limeade " />
-                <p className="text-lg">
+                <p className="md:text-lg flex-1">
                   Free staff management and salary payment
                 </p>
               </li>
               <li className="flex space-x-2 items-center">
                 <CheckIcon className="w-6 h-6 text-limeade " />
-                <p className="text-lg">
+                <p className="md:text-lg flex-1">
                   Free in-app payment for user convenince
                 </p>
               </li>
               <li className="flex space-x-2 items-center">
                 <CheckIcon className="w-6 h-6 text-limeade " />
-                <p className="text-lg">
+                <p className="md:text-lg flex-1">
                   Free customer management according to updated SOP by
                   government
                 </p>
               </li>
               <li className="flex space-x-2 items-center">
                 <CheckIcon className="w-6 h-6 text-limeade " />
-                <p className="text-lg">
+                <p className="md:text-lg flex-1">
                   Free one simple solution to everything you need to run your
                   bussiness
                 </p>
@@ -449,19 +453,19 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="bg-white px-6 py-6 tablet:py-10">
+      <section className="bg-white px-6 py-6 tablet:py-10 desktop:pt-24 desktop:pb-16">
         <div className="max-w-7xl mx-auto  flex space-x-10 items-center justify-between">
-          <div className="p-10">
-            <h2 className="text-3xl font-semibold mb-8 text-limeade max-w-lg">
+          <div className="p-4 lg:p-10">
+            <h2 className="text-2xl font-semibold mb-4 lg:mb-8 text-limeade">
               Free IoT Temperature and Automated hand Sanitizer
             </h2>
-            <p className="text-xl max-w-xl">
+            <p className="md:text-xl max-w-xl">
               An temperature scanner with automated hand sanitizer which is
               integrated with mobile apps for Covid-19 risk assessment given
               FREE for our business partners.
             </p>
           </div>
-          <div className="aspect-w-1 asect-h-6 w-1/3 h-[700px]">
+          <div className="hidden md:block aspect-w-1 asect-h-6 w-1/3 h-[700px]">
             <Image
               layout="fill"
               src="/images/hand-sanitizer.png"
@@ -481,7 +485,12 @@ export default function Home() {
           Hear what our <span className="font-bold">1028</span> satisfied
           customers says about our services
         </p>
-        <Marquee className="gradien" speed={90} gradientColor={[229, 231, 235]}>
+        <Marquee
+          className="gradien"
+          speed={90}
+          gradientColor={[229, 231, 235]}
+          gradientWidth={70}
+        >
           <div className="px-8 py-4 rounded-xl shadow-md bg-white mx-6 max-w-md">
             <div className="flex justify-end mb-4">
               <p className="block text-gray-500 text-sm">12 September 2021</p>

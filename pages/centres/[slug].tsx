@@ -22,9 +22,9 @@ export default function Centres() {
 
   return (
     <div className="max-w-7xl mx-auto px-4">
-      <div className="grid grid-cols-3 gap-10 py-6">
+      <div className="grid md:grid-cols-3 gap-4 lg:gap-10 py-6">
         {/* Left */}
-        <div className="col-span-2">
+        <div className="md:col-span-2">
           <div className="bg-white shadow-md rounded-md p-6 mb-6">
             <Carousel useKeyboardArrows={true} showStatus={false}>
               <div className="aspect-w-16 aspect-h-9">
@@ -78,9 +78,9 @@ export default function Centres() {
 
         {/* Right */}
         <div>
-          <div className="bg-white shadow-md rounded-md p-6 mb-6">
-            <div className="flex space-x-4 pb-4 border-b border-gray-200 mb-3">
-              <div>
+          <div className="bg-white shadow-md rounded-md p-6 md:p-4 lg:p-6 mb-6">
+            <div className="flex flex-row md:flex-col lg:flex-row space-x-4 md:space-x-0 lg:space-x-4 pb-4 border-b border-gray-200 mb-3">
+              <div className="block md:flex lg:block justify-center mb-2">
                 <Image
                   width={80}
                   height={80}
@@ -105,7 +105,7 @@ export default function Centres() {
                 </div>
               </div>
             </div>
-            <dl className="grid grid-cols-4 items-center gap-y-1">
+            <dl className="grid grid-cols-4 md:grid-cols-1 lg:grid-cols-4 items-center gap-y-1">
               <dt className="text-sm text-gray-600">Safety</dt>
               <dd className="col-span-3 flex items-center space-x-2">
                 <div className="h-2 bg-gray-300 rounded-full relative flex-1">
@@ -136,8 +136,8 @@ export default function Centres() {
             </dl>
 
             <Link href={`/booking/centre/${router.query.slug}`}>
-              <a className="block bg-limeade text-white rounded-lg hover:bg-verdun-green transition mt-5 w-full pt-2 pb-3">
-                <span className="text-lg font-bold block text-center">
+              <a className="block bg-limeade text-white rounded-lg hover:bg-verdun-green transition mt-5 w-full pt-2 pb-3 px-2">
+                <span className="text-lg md:text-base lg:text-lg font-bold block text-center">
                   Book An Appointment
                 </span>
                 <span className="block text-center text-sm">

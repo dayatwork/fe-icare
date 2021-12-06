@@ -19,9 +19,9 @@ export default function Services() {
 
   return (
     <div className="max-w-7xl mx-auto px-4">
-      <div className="grid grid-cols-3 gap-10 py-6">
+      <div className="grid md:grid-cols-3 gap-4 lg:gap-10 py-6">
         {/* Left */}
-        <div className="col-span-2">
+        <div className="md:col-span-2">
           <div className="bg-white shadow-md rounded-md p-6 mb-6">
             <Carousel useKeyboardArrows={true} showStatus={false}>
               <div className="aspect-w-16 aspect-h-9">
@@ -106,13 +106,13 @@ export default function Services() {
             <h3 className="font-semibold text-lg mb-2 pb-2 border-b border-gray-200">
               Locations
             </h3>
-            <div className="flex space-x-3 py-2">
+            <div className="flex md:flex-col lg:flex-row space-x-3 md:space-x-0 lg:space-x-3 py-2">
               <img
                 src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=150&q=80"
                 alt="Person"
-                className="object-cover w-24 h-20"
+                className="object-cover"
               />
-              <div className="flex-1">
+              <div className="flex-1 md:mt-2 lg:mt-0">
                 <p className="font-semibold text-sm">Vibes Spa</p>
                 <p className="text-gray-500 text-sm mb-2">
                   Taman University, Petaling Jaya
@@ -136,13 +136,13 @@ export default function Services() {
             <h3 className="font-semibold text-lg mb-2 pb-2 border-b border-gray-200">
               Suggested Services
             </h3>
-            <div className="flex space-x-3 py-2">
+            <div className="flex md:flex-col lg:flex-row space-x-3 md:space-x-0 lg:space-x-3 py-2">
               <img
                 src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=150&q=80"
                 alt="Person"
-                className="object-cover w-24 h-20"
+                className="object-cover"
               />
-              <div className="flex-1">
+              <div className="flex-1 md:mt-2 lg:mt-0">
                 <p className="font-semibold text-sm">Vibes Spa</p>
                 <p className="text-gray-500 text-sm mb-2">
                   Taman University, Petaling Jaya
