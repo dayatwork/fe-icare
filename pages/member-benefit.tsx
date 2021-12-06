@@ -3,8 +3,10 @@ import Layout from '@/components/Layout'
 export default function MemberBenefit() {
   return (
     <section className="bg-white">
-      <div className="bg-limeade py-10">
-        <h1 className="text-4xl text-white mb-4 text-center">Member Benefit</h1>
+      <div className="bg-limeade py-6 md:py-10">
+        <h1 className="text-3xl md:text-4xl text-white mb-4 text-center">
+          Member Benefit
+        </h1>
       </div>
     </section>
   )

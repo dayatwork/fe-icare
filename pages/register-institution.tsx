@@ -35,9 +35,9 @@ export default function RegisterInstitution() {
           Register Institution
         </h1>
       </div>
-      <div className="flex py-10 bg-white  space-x-10">
+      <div className="flex py-10 bg-white space-x-10">
         <form className="w-full max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-2 gap-x-20 gap-y-10">
+          <div className="grid grid-cols-2 gap-x-10 md:gap-x-20 gap-y-6 md:gap-y-10">
             <div>
               <label
                 htmlFor="institution-name"
