@@ -68,30 +68,41 @@ export default function MyBooking() {
             </Tab.List>
             <Tab.Panels className="flex-1">
               <Tab.Panel>
+                <p className="block px-4 py-2 text-center mb-4 bg-[#FFEEB0] border border-[#B74200] text-[#A93300]">
+                  Please make payment within{' '}
+                  <span className="font-bold">24 hours</span> to avoid booking
+                  cancellation
+                </p>
                 <ul className="flex flex-col items-stretch space-y-4">
-                  <BookingItme />
+                  <BookingItem status="To Pay" />
+                </ul>
+              </Tab.Panel>
+              <Tab.Panel>
+                <p className="block px-4 py-2 text-center mb-4 bg-[#FFEEB0] border border-[#B74200] text-[#A93300]">
+                  Please use the <span className="font-bold">i-Care App</span>{' '}
+                  to Check-in and kindly Check-in{' '}
+                  <span className="font-bold">10 minutes earlier</span> to
+                  prevent late treatment
+                </p>
+                <ul className="flex flex-col items-stretch space-y-4">
+                  <BookingItem status="Upcoming" />
+                  <BookingItem status="Upcoming" />
                 </ul>
               </Tab.Panel>
               <Tab.Panel>
                 <ul className="flex flex-col items-stretch space-y-4">
-                  <BookingItme />
-                  <BookingItme />
+                  <BookingItem status="Completed" />
+                  <BookingItem status="Completed" />
+                  <BookingItem status="Completed" />
+                  <BookingItem status="Completed" />
                 </ul>
               </Tab.Panel>
               <Tab.Panel>
                 <ul className="flex flex-col items-stretch space-y-4">
-                  <BookingItme />
-                  <BookingItme />
-                  <BookingItme />
-                  <BookingItme />
-                </ul>
-              </Tab.Panel>
-              <Tab.Panel>
-                <ul className="flex flex-col items-stretch space-y-4">
-                  <BookingItme />
-                  <BookingItme />
-                  <BookingItme />
-                  <BookingItme />
+                  <BookingItem status="Cancelled" />
+                  <BookingItem status="Cancelled" />
+                  <BookingItem status="Cancelled" />
+                  <BookingItem status="Cancelled" />
                 </ul>
               </Tab.Panel>
             </Tab.Panels>
@@ -102,7 +113,9 @@ export default function MyBooking() {
   )
 }
 
-const BookingItme = () => {
+type Status = 'To Pay' | 'Upcoming' | 'Completed' | 'Cancelled'
+
+const BookingItem = ({ status }: { status: Status }) => {
   return (
     <li className="bg-white shadow p-6 rounded-md">
       <div className="flex justify-between pb-6 border-b border-gray-200">
@@ -131,19 +144,29 @@ const BookingItme = () => {
         </div>
       </div>
       <div className="mt-5 flex justify-between px-2">
-        <p className="text-sm text-gray-600">
-          Payment Date: Tuesday, 21 September 2021, 10:03 am
-        </p>
+        {status === 'To Pay' ? (
+          <p className="text-sm text-gray-600">
+            Payment Date: Tuesday, 21 September 2021, 10:03 am
+          </p>
+        ) : (
+          <div />
+        )}
         <div>
           <p className=" space-x-4">
             <span className="font-semibold text-lg">Total Price</span>
             <span className="text-2xl text-limeade font-semibold">RM268</span>
           </p>
           <div className="flex justify-end mt-4">
-            <button className="py-2 pl-3 pr-4 bg-gray-200 border hover:bg-gray-300 transition font-semibold border-gray-600 inline-flex items-center">
-              <PrinterIcon className="w-5 h-5 mr-2" />
-              Receipt
-            </button>
+            {status === 'To Pay' ? (
+              <button className="bg-limeade text-white px-4 py-2 hover:bg-opacity-90 shadow-md">
+                Make Payment
+              </button>
+            ) : (
+              <button className="py-2 pl-3 pr-4 bg-gray-200 border hover:bg-gray-300 transition font-semibold border-gray-600 inline-flex items-center">
+                <PrinterIcon className="w-5 h-5 mr-2" />
+                Receipt
+              </button>
+            )}
           </div>
         </div>
       </div>
