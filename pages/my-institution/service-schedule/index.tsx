@@ -6,13 +6,12 @@ import Link from 'next/link'
 import { InstitutionLayout } from 'layouts/InstitutionLayout'
 import { PaginationTable } from 'components/table'
 
-export default function InstitutionServices() {
+export default function InstitutionServiceSchedule() {
   const data = useMemo(
     () => [
       {
         id: 1,
         name: '1-Hour full Body Massage Yeo Beuty & Spa',
-        serviceId: 'SPA123',
         originalPrice: 108.9,
         price: 78.9,
         photoURL:
@@ -21,7 +20,6 @@ export default function InstitutionServices() {
       {
         id: 2,
         name: '1-Hour full Body Massage Yeo Beuty & Spa',
-        serviceId: 'SPA123',
         originalPrice: 108.9,
         price: 78.9,
         photoURL:
@@ -30,7 +28,6 @@ export default function InstitutionServices() {
       {
         id: 3,
         name: '1-Hour full Body Massage Yeo Beuty & Spa',
-        serviceId: 'SPA123',
         originalPrice: 108.9,
         price: 78.9,
         photoURL:
@@ -57,35 +54,30 @@ export default function InstitutionServices() {
         Header: 'Name',
         Footer: 'Name',
         accessor: 'name',
-        Cell: ({ value, row }) => (
-          <div className="space-y-2">
-            <p className="font-semibold">{value}</p>
-            <p className="text-gray-600">ID: {row.original.serviceId}</p>
-          </div>
-        ),
+        Cell: ({ value }) => <p className="font-semibold">{value}</p>,
       },
-      // {
-      //   Header: 'Original Price',
-      //   Footer: 'Original Price',
-      //   accessor: 'originalPrice',
-      //   Cell: ({ value }: any) =>
-      //     value ? (
-      //       <p>{`RM ${value}`}</p>
-      //     ) : (
-      //       <p className="text-gray-500">No Data</p>
-      //     ),
-      // },
-      // {
-      //   Header: 'Price',
-      //   Footer: 'Price',
-      //   accessor: 'price',
-      //   Cell: ({ value }: any) =>
-      //     value ? (
-      //       <p className="font-semibold text-limeade">{`RM ${value}`}</p>
-      //     ) : (
-      //       <p className="text-gray-500">No Data</p>
-      //     ),
-      // },
+      {
+        Header: 'Original Price',
+        Footer: 'Original Price',
+        accessor: 'originalPrice',
+        Cell: ({ value }: any) =>
+          value ? (
+            <p>{`RM ${value}`}</p>
+          ) : (
+            <p className="text-gray-500">No Data</p>
+          ),
+      },
+      {
+        Header: 'Price',
+        Footer: 'Price',
+        accessor: 'price',
+        Cell: ({ value }: any) =>
+          value ? (
+            <p className="font-semibold text-limeade">{`RM ${value}`}</p>
+          ) : (
+            <p className="text-gray-500">No Data</p>
+          ),
+      },
       {
         Header: 'Action',
         Footer: 'Action',
@@ -107,10 +99,10 @@ export default function InstitutionServices() {
   return (
     <>
       <div className="py-6 md:py-10 px-4 md:px-10 bg-white flex justify-between">
-        <h1 className="text-xl md:text-2xl font-bold">Services</h1>
-        <Link href="/my-institution/services/add">
+        <h1 className="text-xl md:text-2xl font-bold">Service Schedule</h1>
+        <Link href="/my-institution/service-schedule/add">
           <a className="bg-limeade text-white text-lg px-4 py-2 rounded-md hover:bg-opacity-90">
-            Add New Service
+            Add New Service Schedule
           </a>
         </Link>
       </div>
@@ -128,6 +120,6 @@ export default function InstitutionServices() {
   )
 }
 
-InstitutionServices.getLayout = function getLayout(page: JSX.Element) {
+InstitutionServiceSchedule.getLayout = function getLayout(page: JSX.Element) {
   return <InstitutionLayout>{page}</InstitutionLayout>
 }

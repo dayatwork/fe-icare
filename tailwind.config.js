@@ -20,6 +20,19 @@ module.exports = {
       limeade: '#6EA001',
       gold: '#ffcd3c',
       'verdun-green': '#486801',
+      primary: {
+        DEFAULT: '#A6F102',
+        50: '#E5FEAC',
+        100: '#DEFE98',
+        200: '#D1FE70',
+        300: '#C4FD47',
+        400: '#B7FD1F',
+        500: '#A6F102',
+        600: '#80B902',
+        700: '#598201',
+        800: '#334A01',
+        900: '#0D1200',
+      },
     },
     extend: {
       fontFamily: {
