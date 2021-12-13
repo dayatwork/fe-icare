@@ -20,6 +20,7 @@ export default function BookingService() {
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear())
   const [selectedDate, setSelectedDate] = useState(new Date().getDate())
   const [selectedTime, setSelectedTime] = useState('')
+  const [paymentMethod, setPaymentMethod] = useState('')
   const { data } = useSWR<Service>(
     () => router.query.slug && `/api/services/${router.query.slug}`,
     fetcher
@@ -157,6 +158,28 @@ export default function BookingService() {
                 </p>
               </li>
             </ul>
+            <div>
+              <label
+                htmlFor="paymentMethod"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Payment Method
+              </label>
+              <div className="mt-1">
+                <select
+                  id="paymentMethod"
+                  className="form-select appearance-none block w-full px-3 py-2  placeholder-gray-400 focus:outline-none sm:text-sm border-gray-300 rounded-md"
+                  value={paymentMethod}
+                  onChange={(e) => setPaymentMethod(e.target.value)}
+                >
+                  <option value="">Choose Payment Method</option>
+                  <option value="Payment A">Cash</option>
+                  <option value="Payment B">Credit</option>
+                  <option value="Payment C">Paypal</option>
+                  <option value="Payment D"></option>
+                </select>
+              </div>
+            </div>
 
             {cookies && cookies.accessToken ? (
               <button className="btn-primary mt-5 w-full">Make Payment</button>
