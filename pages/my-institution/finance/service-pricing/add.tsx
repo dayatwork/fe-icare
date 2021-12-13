@@ -2,20 +2,40 @@
 /* eslint-disable react/display-name */
 import { useState } from 'react'
 import Link from 'next/link'
+import Multiselect from 'multiselect-react-dropdown'
 import { InstitutionLayout } from 'layouts/InstitutionLayout'
-import { Step } from '@/components/step'
+
+const serviceItems = [
+  {
+    id: 'serviceItem1',
+    name: 'Massage 1-Hour Pricing',
+  },
+  {
+    id: 'serviceItem2',
+    name: 'Pedicure',
+  },
+]
+
+type ServiceItem = typeof serviceItems[0]
+
+const paymentMethods = [
+  { id: 1, name: 'Cash' },
+  { id: 2, name: 'Credit' },
+  { id: 3, name: 'Sehat Pay' },
+  { id: 4, name: 'Transfer' },
+  { id: 5, name: 'Paypal' },
+]
 
 export default function InstitutionServicePricing() {
-  const [step, setStep] = useState(1)
-  const [serviceName, setServiceName] = useState('')
-  const [description, setDescription] = useState('')
-  const [duration, setDuration] = useState('')
-  const [price, setPrice] = useState('')
-  const [image, setImage] = useState('')
-  const [staffIncharge, setStaffIncharge] = useState('')
-  const [workingHours, setWorkingHours] = useState('')
-  const [incrementSchedule, setIncrementSchedule] = useState('')
-  const [slots, setSlots] = useState('')
+  const [priceName, setPriceName] = useState('')
+  const [service, setService] = useState('')
+  const [selectedServiceItems, setSelectedServiceItems] =
+    useState<ServiceItem[]>()
+  const [note, setNote] = useState('')
+  const [tax, setTax] = useState(0)
+  const [currency, setCurrency] = useState('')
+
+  console.log({ selectedServiceItems })
 
   return (
     <>
@@ -23,7 +43,7 @@ export default function InstitutionServicePricing() {
         <h1 className="text-xl md:text-2xl font-bold">
           Add New Service Pricing
         </h1>
-        <Step currentStep={step} setCurrentStep={setStep} />
+        {/* <Step currentStep={step} setCurrentStep={setStep} /> */}
       </div>
 
       <div className="pt-6 pb-10 px-4 md:px-10">
@@ -33,263 +53,241 @@ export default function InstitutionServicePricing() {
           </a>
         </Link>
         <form>
-          {step === 1 && (
-            <>
-              <div className="bg-white p-10 rounded-md shadow max-w-7xl grid grid-cols-1 gap-6">
-                <div>
-                  <label
-                    htmlFor="service-name"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    Service Name
-                  </label>
-                  <div>
-                    <input
-                      id="service-name"
-                      type="text"
-                      className="appearance-none block w-full px-3 py-2  placeholder-gray-400 focus:outline-none sm:text-sm border-b-2 border-gray-300"
-                      value={serviceName}
-                      onChange={(e) => setServiceName(e.target.value)}
-                    />
-                  </div>
+          <div className="bg-white p-10 rounded-md shadow max-w-7xl grid grid-cols-1 gap-6">
+            <div>
+              <label
+                htmlFor="price-name"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Price Name
+              </label>
+              <div>
+                <input
+                  id="price-name"
+                  type="text"
+                  className="appearance-none block w-full px-3 py-2  placeholder-gray-400 focus:outline-none sm:text-sm border-b-2 border-gray-300"
+                  value={priceName}
+                  onChange={(e) => setPriceName(e.target.value)}
+                />
+              </div>
+            </div>
+            <div>
+              <label
+                htmlFor="service"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Select Service
+              </label>
+              <div>
+                <select
+                  id="service"
+                  className="form-select border-t-0 border-r-0 border-l-0 appearance-none block w-full px-3 py-2  placeholder-gray-400 focus:outline-none sm:text-sm border-b-2 border-gray-300"
+                  value={service}
+                  onChange={(e) => setService(e.target.value)}
+                >
+                  <option value="">Choose Service</option>
+                  <option value="A">Service A</option>
+                  <option value="B">Service B</option>
+                  <option value="C">Service C</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <label
+                htmlFor="description"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Selected Service Item
+              </label>
+              <div className="mt-2">
+                <Multiselect
+                  style={{
+                    inputField: {
+                      padding: '0.25rem 0.5rem',
+                    },
+                    searchBox: {
+                      // border: 'none',
+                      'border-top-width': 0,
+                      'border-left-width': 0,
+                      'border-right-width': 0,
+                      'border-bottom-width': '2px',
+                      'border-radius': 0,
+                    },
+                    chips: {
+                      // To change css chips(Selected options)
+                      background: '#6EA001',
+                    },
+                  }}
+                  options={serviceItems}
+                  selectedValues={selectedServiceItems}
+                  onSelect={(selectedList: ServiceItem[]) => {
+                    setSelectedServiceItems(selectedList)
+                  }}
+                  onRemove={(selectedList: ServiceItem[]) => {
+                    setSelectedServiceItems(selectedList)
+                  }}
+                  displayValue="name"
+                />
+              </div>
+            </div>
+
+            {selectedServiceItems?.length ? (
+              <>
+                <div className="p-4 border border-gray-200 space-y-8">
+                  {selectedServiceItems?.map((serviceItem, idx) => (
+                    <div key={serviceItem.id}>
+                      <h4 className="text-gray-900 font-semibold mb-2">
+                        {serviceItem.name}
+                      </h4>
+                      <div className="grid grid-cols-2 gap-6">
+                        <div>
+                          <label
+                            htmlFor={`price-${idx}`}
+                            className="block text-sm font-medium text-gray-700"
+                          >
+                            Price (RM)
+                          </label>
+                          <div>
+                            <input
+                              id={`price-${idx}`}
+                              type="number"
+                              className="appearance-none block w-full px-3 py-2  placeholder-gray-400 focus:outline-none sm:text-sm border-b-2 border-gray-300"
+                              value={priceName}
+                              onChange={(e) => setPriceName(e.target.value)}
+                            />
+                          </div>
+                        </div>
+                        <div>
+                          <label
+                            htmlFor={`discount-${idx}`}
+                            className="block text-sm font-medium text-gray-700"
+                          >
+                            Discount (%)
+                          </label>
+                          <div>
+                            <input
+                              id={`discount-${idx}`}
+                              type="number"
+                              className="appearance-none block w-full px-3 py-2  placeholder-gray-400 focus:outline-none sm:text-sm border-b-2 border-gray-300"
+                              value={priceName}
+                              onChange={(e) => setPriceName(e.target.value)}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
-                <div>
-                  <label
-                    htmlFor="description"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    Description
-                  </label>
-                  <div>
-                    <input
-                      id="description"
-                      type="text"
-                      className="appearance-none block w-full px-3 py-2  placeholder-gray-400 focus:outline-none sm:text-sm border-b-2 border-gray-300"
-                      value={description}
-                      onChange={(e) => setDescription(e.target.value)}
-                    />
-                  </div>
+
+                <div className="bg-gray-300 p-4">
+                  <dl className="flex space-x-4 text-lg">
+                    <dt>Total Pricing:</dt>
+                    <dd className="font-bold">RM 100</dd>
+                  </dl>
                 </div>
-                <div>
+
+                <div className="mt-4">
                   <label
-                    htmlFor="duration"
+                    htmlFor="currency"
                     className="block text-sm font-medium text-gray-700"
                   >
-                    Duration
-                  </label>
-                  <div>
-                    <input
-                      id="duration"
-                      type="text"
-                      className="appearance-none block w-full px-3 py-2  placeholder-gray-400 focus:outline-none sm:text-sm border-b-2 border-gray-300"
-                      value={duration}
-                      onChange={(e) => setDuration(e.target.value)}
-                    />
-                  </div>
-                </div>
-                <div>
-                  <label
-                    htmlFor="price"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    Price
-                  </label>
-                  <div>
-                    <input
-                      id="price"
-                      type="text"
-                      className="appearance-none block w-full px-3 py-2  placeholder-gray-400 focus:outline-none sm:text-sm border-b-2 border-gray-300"
-                      value={price}
-                      onChange={(e) => setPrice(e.target.value)}
-                    />
-                  </div>
-                </div>
-                <div>
-                  <label
-                    htmlFor="image"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    Image
-                  </label>
-                  <div>
-                    <input
-                      id="image"
-                      type="file"
-                      className="appearance-none block w-full px-3 py-2  placeholder-gray-400 focus:outline-none sm:text-sm border-b-2 border-gray-300"
-                      value={image}
-                      onChange={(e) => setImage(e.target.value)}
-                    />
-                  </div>
-                </div>
-                <div>
-                  <label
-                    htmlFor="staff-incharge"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    Staff incharge
+                    Currency
                   </label>
                   <div>
                     <select
-                      id="staff-incharge"
-                      className="appearance-none block w-full px-3 py-2  placeholder-gray-400 focus:outline-none sm:text-sm border-b-2 border-gray-300"
-                      value={staffIncharge}
-                      onChange={(e) => setStaffIncharge(e.target.value)}
+                      id="currency"
+                      className="form-select border-t-0 border-r-0 border-l-0 appearance-none block w-full px-3 py-2  placeholder-gray-400 focus:outline-none sm:text-sm border-b-2 border-gray-300"
+                      value={currency}
+                      onChange={(e) => setCurrency(e.target.value)}
                     >
-                      <option value="">Choose Staff</option>
-                      <option value="A">A</option>
-                      <option value="B">B</option>
-                      <option value="C">C</option>
+                      <option value="">Choose Currency</option>
+                      <option value="MYR">MYR Ringgit Malaysia</option>
+                      <option value="USD">USD Dollar US</option>
                     </select>
                   </div>
                 </div>
-              </div>
-              <div className="flex justify-end mt-4 max-w-7xl">
-                <button
-                  className="px-4 py-2 bg-limeade rounded-md text-white w-24"
-                  type="button"
-                  onClick={() => setStep(2)}
-                >
-                  Next
-                </button>
-              </div>
-            </>
-          )}
-          {step === 2 && (
-            <>
-              <div className="bg-white p-10 rounded-md shadow max-w-7xl grid grid-cols-1 gap-6">
+
                 <div>
                   <label
-                    htmlFor="working-hours"
+                    htmlFor="note"
                     className="block text-sm font-medium text-gray-700"
                   >
-                    Total Working Hours
+                    Note
                   </label>
                   <div>
                     <input
-                      id="working-hours"
+                      id="note"
                       type="text"
                       className="appearance-none block w-full px-3 py-2  placeholder-gray-400 focus:outline-none sm:text-sm border-b-2 border-gray-300"
-                      value={workingHours}
-                      onChange={(e) => setWorkingHours(e.target.value)}
+                      value={note}
+                      onChange={(e) => setNote(e.target.value)}
                     />
                   </div>
                 </div>
                 <div>
                   <label
-                    htmlFor="increment-schedule"
+                    htmlFor="tax"
                     className="block text-sm font-medium text-gray-700"
                   >
-                    Increment Schedule
+                    Tax
                   </label>
                   <div>
                     <input
-                      id="increment-schedule"
-                      type="text"
+                      id="tax"
+                      type="number"
                       className="appearance-none block w-full px-3 py-2  placeholder-gray-400 focus:outline-none sm:text-sm border-b-2 border-gray-300"
-                      value={incrementSchedule}
-                      onChange={(e) => setIncrementSchedule(e.target.value)}
+                      value={tax}
+                      onChange={(e) => setTax(Number(e.target.value) || 0)}
                     />
                   </div>
                 </div>
                 <div>
-                  <label
-                    htmlFor="slots"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    Number of Slots
-                  </label>
-                  <div>
-                    <input
-                      id="slots"
-                      type="text"
-                      className="appearance-none block w-full px-3 py-2  placeholder-gray-400 focus:outline-none sm:text-sm border-b-2 border-gray-300"
-                      value={slots}
-                      onChange={(e) => setSlots(e.target.value)}
-                    />
-                  </div>
+                  <fieldset>
+                    <legend className="block text-sm font-medium text-gray-700">
+                      Payment Method
+                    </legend>
+                    <div className="mt-4 flex space-x-10">
+                      {paymentMethods.map((paymentMethod, paymentMethodIdx) => (
+                        <div
+                          key={paymentMethodIdx}
+                          className="py-4 flex items-center"
+                        >
+                          <div className="mr-2 flex items-center h-5">
+                            <input
+                              id={`paymentMethod-${paymentMethod.id}`}
+                              name={`paymentMethod-${paymentMethod.id}`}
+                              type="checkbox"
+                              className="form-checkbox focus:ring-primary-500 h-4 w-4 text-primary-600 border-gray-300 rounded"
+                            />
+                          </div>
+                          <div className="text-sm">
+                            <label
+                              htmlFor={`paymentMethod-${paymentMethod.id}`}
+                              className="font-medium text-gray-700 select-none"
+                            >
+                              {paymentMethod.name}
+                            </label>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </fieldset>
                 </div>
-              </div>
-              <div className="flex justify-end space-x-4 mt-4 max-w-7xl">
-                <button
-                  className="px-4 py-2 bg-gray-300 rounded-md  w-24"
-                  type="button"
-                  onClick={() => setStep(1)}
-                >
-                  Back
-                </button>
-                <button
-                  className="px-4 py-2 bg-limeade rounded-md text-white w-24"
-                  type="button"
-                  onClick={() => setStep(3)}
-                >
-                  Next
-                </button>
-              </div>
-            </>
-          )}
-          {step === 3 && (
-            <>
-              <div className="bg-white shadow rounded-lg p-4 sm:p-6 lg:p-10 max-w-7xl">
-                <dl className="space-y-4 md:space-y-6">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
-                    <div>
-                      <dt className="text-sm text-gray-600">Service Name</dt>
-                      <dd className="font-semibold">{serviceName}</dd>
-                    </div>
-                    <div>
-                      <dt className="text-sm text-gray-600">Description</dt>
-                      <dd className="font-semibold">{description}</dd>
-                    </div>
-                    <div>
-                      <dt className="text-sm text-gray-600">Duration</dt>
-                      <dd className="font-semibold">{duration}</dd>
-                    </div>
-                    <div>
-                      <dt className="text-sm text-gray-600">Price</dt>
-                      <dd className="font-semibold">
-                        {price ? `RM ${price}` : ''}
-                      </dd>
-                    </div>
-                    <div>
-                      <dt className="text-sm text-gray-600">Staff incharge</dt>
-                      <dd className="font-semibold">{staffIncharge}</dd>
-                    </div>
-                    <div>
-                      <dt className="text-sm text-gray-600">
-                        Total Working Hours
-                      </dt>
-                      <dd className="font-semibold">{workingHours}</dd>
-                    </div>
-                  </div>
-                  <div>
-                    <dt className="text-sm text-gray-600">
-                      Increment Schedule
-                    </dt>
-                    <dd className="font-semibold">{incrementSchedule}</dd>
-                  </div>
-                  <div>
-                    <dt className="text-sm text-gray-600">Number of Slots</dt>
-                    <dd className="font-semibold">{slots}</dd>
-                  </div>
-                </dl>
-              </div>
-              <div className="flex justify-end space-x-4 mt-4 max-w-7xl">
-                <button
-                  className="px-4 py-2 bg-gray-300 rounded-md  w-24"
-                  type="button"
-                  onClick={() => setStep(2)}
-                >
-                  Back
-                </button>
-                <button
-                  className="px-4 py-2 bg-limeade rounded-md text-white w-24"
-                  type="button"
-                >
-                  Publish
-                </button>
-              </div>
-            </>
-          )}
+              </>
+            ) : (
+              <p className="text-center block px-4 py-2">
+                Please select service item
+              </p>
+            )}
+          </div>
+          <div className="flex justify-end mt-4 max-w-7xl">
+            <button
+              className="px-4 py-2 bg-limeade rounded-md text-white"
+              type="button"
+            >
+              Add Pricing
+            </button>
+          </div>
         </form>
       </div>
     </>

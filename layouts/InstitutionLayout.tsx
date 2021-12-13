@@ -29,19 +29,6 @@ function classNames(...classes: string[]) {
 const navigation = [
   { name: 'Customers', current: true, href: '/my-institution/customers' },
   { name: 'Services', current: true, href: '/my-institution/services' },
-  // {
-  //   name: 'Service Schedule',
-  //   current: true,
-  //   href: '/my-institution/service-schedule',
-  // },
-  // {
-  //   name: 'Services',
-  //   current: false,
-  //   children: [
-  //     { name: 'Schedule', href: '/my-institution' },
-  //     { name: 'Master', href: '/my-institution/services' },
-  //   ],
-  // },
   {
     name: 'Finance',
     current: false,
@@ -59,9 +46,9 @@ const navigation = [
     current: false,
     href: '/my-institution/staff',
     children: [
-      { name: 'Staff Management', href: '/my-institution/staff' },
-      { name: 'Staff Schedule', href: '/my-institution' },
-      { name: 'Report', href: '/my-institution' },
+      { name: 'Staff Management', href: '/my-institution/staff/management' },
+      { name: 'Staff Schedule', href: '/my-institution/staff/schedule' },
+      { name: 'Report', href: '/my-institution/staff/report' },
     ],
   },
 ]

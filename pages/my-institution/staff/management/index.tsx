@@ -81,7 +81,7 @@ export default function InstitutionStaff() {
     <>
       <div className="py-6 md:py-10 px-4 md:px-10 bg-white flex justify-between">
         <h1 className="text-xl md:text-2xl font-bold">Staff</h1>
-        <Link href="/my-institution/staff/add">
+        <Link href="/my-institution/staff/management/add">
           <a className="bg-limeade text-white text-lg px-4 py-2 rounded-md hover:bg-opacity-90">
             Add New Staff
           </a>

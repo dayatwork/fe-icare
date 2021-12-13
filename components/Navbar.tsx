@@ -193,7 +193,7 @@ export const Navbar = () => {
                           </Link>
                         )}
                       </Menu.Item>
-                      <Menu.Item
+                      {/* <Menu.Item
                         as="li"
                         className="block whitespace-nowrap py-2 px-4"
                       >
@@ -208,7 +208,7 @@ export const Navbar = () => {
                             </a>
                           </Link>
                         )}
-                      </Menu.Item>
+                      </Menu.Item> */}
                     </div>
                     <div>
                       <Menu.Item
