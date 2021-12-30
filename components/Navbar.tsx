@@ -51,19 +51,19 @@ export const Navbar = () => {
   return (
     <header className="shadow-md bg-white">
       {router.pathname === '/' && showBanner && (
-        <div className="bg-[#FFF1BF] text-gray-800 py-4">
+        <div className="bg-red-100 text-red-700 py-4">
           <div className="text-center relative max-w-7xl mx-auto">
             <p className="text-sm md:text-base">
               Book Healtcare & Wellness Centre Instantly near you.{' '}
-              <Link href="/book">
-                <a className="block md:inline text-limeade font-bold hover:text-verdun-green">
-                  Book Now
+              <Link href="/emergency-call">
+                <a className="block md:inline text-red-700 font-bold hover:text-red-800">
+                  Emergency Call
                 </a>
               </Link>
             </p>
             <button
               onClick={() => setShowBanner(false)}
-              className="absolute top-0 right-6 text-limeade hover:text-verdun-green hover:bg-limeade hover:bg-opacity-30 p-1 rounded-sm"
+              className="absolute top-0 right-6 text-red-700 hover:text-red-700 hover:bg-red-700 hover:bg-opacity-30 p-1 rounded-sm"
             >
               <span className="sr-only">Close Banner</span>
               <XIcon className="w-5 h-5" />
@@ -239,6 +239,22 @@ export const Navbar = () => {
                               }`}
                             >
                               My Booking
+                            </a>
+                          </Link>
+                        )}
+                      </Menu.Item>
+                      <Menu.Item
+                        as="li"
+                        className="block whitespace-nowrap py-2 px-4"
+                      >
+                        {({ active }) => (
+                          <Link href="/my-dependent">
+                            <a
+                              className={`block ${
+                                active ? 'text-limeade' : 'text-gray-600'
+                              }`}
+                            >
+                              My Dependent
                             </a>
                           </Link>
                         )}
